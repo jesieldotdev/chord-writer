@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import * as S from "./styles";
+import Home from "./pages";
 
 function App() {
   const notes = ["C", "D", "E", "F", "G", "A", "B"] as string[];
@@ -20,14 +21,14 @@ function App() {
     setSheet((prev) => {
       const novoArray = [...prev.slice(0, -1)];
       return novoArray;
-    });
+    });s
   }
 
   return (
     <>
-      <p>Chord Writer</p>
 
-      <S.SheetWrapper>
+<Home />
+      {/* <S.SheetWrapper>
         {sheet.map((note) => (
           <S.BlockSheet className="sheetBlock">{note}</S.BlockSheet>
         ))}
@@ -43,7 +44,7 @@ function App() {
           <S.BlockIntervals onClick={() => addChord(note)}>{note}</S.BlockIntervals>
         ))}
        
-      </S.Int>
+      </S.Int> */}
     </>
   );
 }
