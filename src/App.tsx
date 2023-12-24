@@ -4,47 +4,21 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import * as S from "./styles";
 import Home from "./pages";
+import React from "react";
 
 function App() {
-  const notes = ["C", "D", "E", "F", "G", "A", "B"] as string[];
-  
-  const intervals = ['1', 'b3', '3', '4', 'b5', '5', 'b7', '7', '9', '11', '#11', '13'];
+  React.useEffect(() => {
+    // Define o título da página ao montar o componente
+    document.title = "Chord Writter";
 
-  const [sheet, setSheet] = useState<array>([]);
-  const [actualNote, setAtualNote] = useState<string>();
-
-  function addChord(chord) {
-    setAtualNote(chord)
-    setSheet((prev) => [...prev, chord]);
-  }
-  function removeChord(chord) {
-    setSheet((prev) => {
-      const novoArray = [...prev.slice(0, -1)];
-      return novoArray;
-    });s
-  }
-
+    // Esta função será executada quando o componente for desmontado
+    return () => {
+      document.title = "Página não encontrada"; // Opcional: restaura o título original
+    };
+  }, []);
   return (
     <>
-
-<Home />
-      {/* <S.SheetWrapper>
-        {sheet.map((note) => (
-          <S.BlockSheet className="sheetBlock">{note}</S.BlockSheet>
-        ))}
-      </S.SheetWrapper>
-      <S.BottomInsert>
-        {notes.map((note) => (
-          <S.Block onClick={() => addChord(note)}>{note}</S.Block>
-        ))}
-        <S.Block onClick={() => removeChord()}>Rem</S.Block>
-      </S.BottomInsert>
-      <S.Int>
-        {intervals.map((note) => (
-          <S.BlockIntervals onClick={() => addChord(note)}>{note}</S.BlockIntervals>
-        ))}
-       
-      </S.Int> */}
+      <Home />
     </>
   );
 }
