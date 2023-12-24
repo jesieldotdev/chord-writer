@@ -13,8 +13,8 @@ const HomeViewController = () => {
     "4",
     "b5",
     "5",
-    "b7",
     "7",
+    "7M",
     "9",
     "11",
     "#11",
@@ -24,11 +24,18 @@ const HomeViewController = () => {
   const [sheet, setSheet] = useState<string[]>([]);
   const [actualNote, setAtualNote] = useState<string>();
 
-  function addChord(chord:string) {
-    setAtualNote(chord)
-    setSheet((prev) => [...prev, chord]);
+  function addChord(chord: string, type: "note" | "interval") {
+    // setAtualNote(chord);
+    if (type === "note") {
+      setSheet((prev) => [...prev, chord]);
+    }else{
+      const newArray = [...sheet] 
+      newArray[newArray.length - 1]= `${newArray[newArray.length - 1]}${chord}`
+      setSheet(newArray);
+
+    }
   }
-  function removeChord(chord:string) {
+  function removeChord(chord: string) {
     setSheet((prev) => {
       const novoArray = [...prev.slice(0, -1)];
       return novoArray;
@@ -40,9 +47,8 @@ const HomeViewController = () => {
     sheet,
     setSheet,
     addChord,
-    removeChord
-
+    removeChord,
   };
 };
 
-export default HomeViewController
+export default HomeViewController;

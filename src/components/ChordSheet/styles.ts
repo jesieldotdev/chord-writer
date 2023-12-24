@@ -21,9 +21,10 @@ export const BlockSheet = styled.div`
   background-color: #363636;
   border-radius: 8px;
 
-  width: 32px;
+  width: max-content;
+  padding: 2px 12px;
 
-  height: 32px;
+  height: max-content;
   font-weight: 700;
   font-size: 22px;
   align-items: center;

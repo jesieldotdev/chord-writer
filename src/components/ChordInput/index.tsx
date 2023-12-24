@@ -16,19 +16,20 @@ const ChordInput = ({
 }: ChordInputProps) => {
   return (
     <>
-    <S.SheetInsert gridColls='repeat(4, 1fr)'>
-      {notes.map((note) => (
-        <S.Button onClick={() => addChord(note)}>{note}</S.Button>
-      ))}
-   
-      <S.Button onClick={() => removeChord()}>🗑️</S.Button>
+      <S.IntervalInsert gridColls="repeat(6, 1fr)">
+        {intervals.map((int) => (
+          <S.ButtonSmall onClick={() => addChord(int, "interval")}>
+            {int}
+          </S.ButtonSmall>
+        ))}
+      </S.IntervalInsert>
+      <S.SheetInsert gridColls="repeat(4, 1fr)">
+        {notes.map((note) => (
+          <S.Button onClick={() => addChord(note, "note")}>{note}</S.Button>
+        ))}
 
-    </S.SheetInsert>
-    <S.IntervalInsert gridColls="repeat(6, 1fr)">
-    {intervals.map((int) => (
-        <S.ButtonSmall onClick={() => addChord(int)}>{int}</S.ButtonSmall>
-      ))}
-    </S.IntervalInsert>
+        <S.Button onClick={() => removeChord()}>🗑️</S.Button>
+      </S.SheetInsert>
     </>
   );
 };
