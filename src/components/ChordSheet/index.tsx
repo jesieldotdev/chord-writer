@@ -1,8 +1,9 @@
 import * as S from "./styles";
 import ChordButton from "../ChordButton";
+import { SheetProps } from "../../types";
 
 interface ChordInputProps {
-  chords: string[];
+  chords: SheetProps[];
   // intervals: string
 }
 
@@ -11,8 +12,20 @@ const ChordSheet = ({ chords }: ChordInputProps) => {
     <>
       {chords.length > 0 ? (
         <S.SheetWrapper>
-          {chords?.map((note) => (
-            <S.BlockSheet className="sheetBlock">{note}</S.BlockSheet>
+          {chords?.map((inp) => (
+            <S.BlockSheet key={inp.note} className="sheetBlock">
+              {inp.note}
+              <label>
+                {inp.intervals.map((n, index) => {
+                  return (
+                    <>
+                      {index !== 0 && inp.intervals.length > index ? "/" : null}
+                      {n}
+                    </>
+                  );
+                })}
+              </label>
+            </S.BlockSheet>
           ))}
         </S.SheetWrapper>
       ) : (

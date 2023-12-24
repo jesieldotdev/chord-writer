@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { SheetProps } from "../types";
+import changePos from "../utils/changePositionOfString";
 
 const HomeViewController = () => {
   const notes = ["C", "D", "E", "F", "G", "A", "B"] as string[];
@@ -8,34 +10,71 @@ const HomeViewController = () => {
     "M",
     "#",
     "b",
-    "b3",
-    "3",
-    "4",
-    "b5",
-    "5",
+    "sus4",
+    "dim",
+    "5+",
+    "6",
+    "5b",
     "7",
     "7M",
     "9",
+    "9#",
+    "9b",
     "11",
-    "#11",
+    // "#11",
     "13",
   ];
 
-  const [sheet, setSheet] = useState<string[]>([]);
-  const [actualNote, setAtualNote] = useState<string>();
+  const [sheet, setSheet] = useState<SheetProps[]>([]);
 
-  function addChord(chord: string, type: "note" | "interval") {
-    // setAtualNote(chord);
+  function addChord(inp: string, type: "note" | "interval") {
     if (type === "note") {
-      setSheet((prev) => [...prev, chord]);
-    }else{
-      const newArray = [...sheet] 
-      newArray[newArray.length - 1]= `${newArray[newArray.length - 1]}${chord}`
-      setSheet(newArray);
+      const data = {
+        note: inp,
+        intervals: [],
+      };
+      setSheet((prev) => [...prev, data]);
+    } else {
+      const newArray = [...sheet];
+      const third = ["m", "M"];
+      const tensions = ["7", "9", "11", "13"];
+      const clefs = ["#", "b"];
 
+      // terças
+      if (third.includes(inp)) {
+        newArray[newArray.length - 1].note = `${
+          newArray[newArray.length - 1].note
+        }${inp}`;
+        setSheet(newArray);
+      }
+
+      // tensões
+      else if (tensions.includes(inp)) {
+        newArray[newArray.length - 1].intervals.push(inp);
+        setSheet(newArray);
+      }
+
+      // Armaduras # b
+      else if (clefs.includes(inp)) {
+        newArray[newArray.length - 1].note = `${
+          newArray[newArray.length - 1].note
+        }${inp}`;
+
+        const string = newArray[newArray.length - 1].note;
+        const x = newArray[newArray.length - 1].note.length - 1;
+        const y = 1;
+
+        newArray[newArray.length - 1].note = changePos(string, x, y);
+        setSheet(newArray);
+      } else {
+        newArray[newArray.length - 1].intervals.push(inp);
+        setSheet(newArray);
+      }
     }
+    console.log(sheet);
+
   }
-  function removeChord(chord: string) {
+  function removeChord() {
     setSheet((prev) => {
       const novoArray = [...prev.slice(0, -1)];
       return novoArray;

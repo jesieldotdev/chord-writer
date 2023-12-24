@@ -14,7 +14,7 @@ export const IntervalInsert = styled.div`
   /* margin-bottom: -67px; */
   display: grid;
   min-height: 200px;
-  grid-template-columns: ${(props) => props.gridColls || 'repeat(4, 1fr)'}; 
+  grid-template-columns: ${(props) => props.gridcolls || 'repeat(4, 1fr)'}; 
   gap: 8px;
   margin-top: 56px;
 `;
@@ -29,9 +29,9 @@ export const Button = styled.button`
   background-color: #282828;
   border-radius: 8px;
 
-  width: 78px;
+  width: 84px;
 
-  height: 78px;
+  height: 84px;
   font-weight: 500;
   font-size: 22px;
   align-items: center;

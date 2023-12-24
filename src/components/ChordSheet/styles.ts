@@ -35,4 +35,9 @@ export const BlockSheet = styled.div`
 
   margin-top: 8px;
   /* margin-bottom: 100px; */
+
+  label{
+    font-size: 16px;
+    font-weight: 300;
+  }
 `;
