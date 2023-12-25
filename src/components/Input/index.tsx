@@ -1,15 +1,8 @@
 import * as S from "./styles";
 import { Context } from "../../global/Context";
-import { SetStateAction, useContext } from "react";
-
-interface ChordInputProps {
-  notes: string[];
-  intervals: string[];
-  addChord: (inp: string, type: "note" | "interval") => any;
-  removeChord: any;
-  show: boolean;
-  setShow: React.Dispatch<SetStateAction<boolean>>;
-}
+import { useContext } from "react";
+import { Backspace, KeyboardReturn } from "@styled-icons/material-rounded";
+import { ChordInputProps } from "./ChordInputProps";
 
 const ChordInput = ({
   notes,
@@ -17,9 +10,10 @@ const ChordInput = ({
   addChord,
   removeChord,
   show,
-  setShow
+  setShow,
+  newLine,
 }: ChordInputProps) => {
-  console.log(show)
+  console.log(show);
   const { theme } = useContext(Context);
   if (show) {
     return (
@@ -27,9 +21,9 @@ const ChordInput = ({
         <S.IntervalInsert>
           {intervals.map((int) => (
             <S.ButtonSmall
-            style={{
-              width: 'max-content'
-            }}
+              style={{
+                width: "max-content",
+              }}
               theme={theme}
               key={int}
               onClick={() => addChord(int, "interval")}
@@ -56,15 +50,26 @@ const ChordInput = ({
           ))}
 
           <S.Button
-          style={{
-            marginLeft: 'auto'
-          }}
-            className="delete"
+            style={{
+              marginRight: "auto",
+            }}
+            // className="delete"
+            theme={theme}
+            onClick={() => newLine()}
+          >
+            <KeyboardReturn color={theme.text} size={24} />
+          </S.Button>
+          <S.Button
+            style={{
+              marginLeft: "auto",
+            }}
+            // className="delete"
             theme={theme}
             onClick={() => removeChord()}
           >
-            🗑️
+            <Backspace color={theme.text} size={24} />
           </S.Button>
+
           {/* <S.Button
             className="delete"
             theme={theme}

@@ -24,7 +24,7 @@ export const IntervalInsert = styled.div`
   /* margin-bottom: 0;
   margin-top: 0; */
   margin-bottom: 8px;
-  margin-top: 32px;
+  margin-top: 8px;
   flex-wrap: wrap;
   /* justify-content: space-between; */
   display: flex;
@@ -48,7 +48,7 @@ export const Button = styled.button<Theme>`
   /* width: max-content; */
 
   height: 64px;
-  font-weight: 500;
+  font-weight: 800;
   align-items: center;
   display: flex;
   text-align: center;
@@ -72,7 +72,8 @@ export const ButtonSmall = styled.button<Theme>`
   width: 30px;
 
   height: 32px;
-  font-weight: 500;
+  font-weight: 300;
+
   font-size: 16px;
   align-items: center;
   display: flex;

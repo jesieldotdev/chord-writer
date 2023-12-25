@@ -1,41 +1,23 @@
 import styled from "styled-components";
 
 export const SheetWrapper = styled.div`
-  /* margin-bottom: auto; */
-  /* display: grid; */
-  /* gap: 8px; */
-  /* text-align: center; */
-  /* max-height: max-content; */
-  /* max-width: 300px; */
-  /* width: 100%; */
+
   overflow-y: scroll;
   margin-bottom: 16px;
 
-  /* grid-template-columns: repeat(4, 1fr); */
 
   flex-wrap: wrap;
-  /* justify-content: space-between; */
   display: flex;
 
-  /* .grid-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    } */
 
-  /* .grid-item {
-      width: 23%; 
-      margin-bottom: 20px;
-      box-sizing: border-box;
-    } */
 `;
 
 export const Label = styled.label`
   text-align: center;
   /* width: 120px; */
   display: flex;
-  margin-top: 32px;
-  margin-bottom: 32px;
+  margin-top: 16px;
+  margin-bottom: 8px;
 `;
 
 export const BlockSheet = styled.div`
@@ -69,3 +51,60 @@ export const BlockSheet = styled.div`
     font-weight: 300;
   }
 `;
+
+
+export const Verse = styled.div`
+  /* background-color: #363636; */
+  overflow-y: scroll;
+  margin-bottom: 16px;
+
+
+  flex-wrap: wrap;
+  display: flex;
+
+  .title{
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  
+` 
+
+export const ChordItem = styled.div`
+ background-color: ${(props) => props.theme.buttonBackground};
+  color: ${(props) => props.theme.text};
+  border-radius: 8px;
+
+  padding: 8px;
+
+  height: max-content;
+  font-weight: 700;
+  font-size: 16px;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  /* margin-bottom: 8px; */
+  margin: 0;
+  /* margin-top: 8px; */
+  /* margin-bottom: 100px; */
+
+  width: min-content; /* Ajuste conforme necessário */
+  height: min-content; /* Ajuste conforme necessário */
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  align-items: flex-start;
+  margin: 4px;
+
+  label {
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+
+`
+
+export const VerseContainer = styled.div`
+
+overflow-y: scroll;
+`

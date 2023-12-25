@@ -3,3 +3,8 @@ export interface SheetProps {
     intervals: string[];
     // id: string;
   }
+
+  export interface VerseProps{
+   name: string
+   chords: SheetProps[] 
+  }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SheetProps } from "../types";
+import { SheetProps, VerseProps } from "../types";
 import changePos from "../utils/changePositionOfString";
 
 const HomeViewController = () => {
@@ -26,6 +26,7 @@ const HomeViewController = () => {
   ];
 
   const [sheet, setSheet] = useState<SheetProps[]>([]);
+  const [verses, setVerses] = useState<any>([]);
   const [showKeyboard, setShowKeyboard] = useState<boolean>(false);
 
   function addChord(inp: string, type: "note" | "interval") {
@@ -72,7 +73,6 @@ const HomeViewController = () => {
         setSheet(newArray);
       }
     }
-
   }
   function removeChord() {
     setSheet((prev) => {
@@ -80,6 +80,21 @@ const HomeViewController = () => {
       return novoArray;
     });
   }
+
+  function newLine() {
+
+    const data = {
+      name: "verse",
+      chords: [...sheet],
+    };
+
+
+    setVerses((prev) => [...prev, data]);
+    setSheet([]);
+  }
+
+  console.log(verses);
+
   return {
     notes,
     intervals,
@@ -88,7 +103,9 @@ const HomeViewController = () => {
     addChord,
     removeChord,
     showKeyboard,
-    setShowKeyboard
+    setShowKeyboard,
+    newLine,
+    verses,
   };
 };
 
