@@ -14,9 +14,11 @@ const Home = () => {
 
   return (
     <S.Container onClick={() => !viewController.showKeyboard ? viewController.setShowKeyboard(true) : null}>
-      <S.Header>
+      <S.Header theme={theme} style={{
+          marginRight: 16
+        }}>
         <S.Title>
-          <MusicNote color={theme.text} size={24} /> Chord Writter
+          <MusicNote className="note-icon" color={theme.text} size={20} /> Chord Writter
         </S.Title>
         <KeyboardHide
           onClick={() => viewController.setShowKeyboard(false)}
@@ -26,8 +28,10 @@ const Home = () => {
             marginRight: 8,
           }}
         />
-        <ThemeToggle />
+        <ThemeToggle  />
       </S.Header>
+
+      <S.InputContainer theme={theme}>
       <ChordSheet
         verses={viewController.verses}
         chords={viewController.sheet}
@@ -42,6 +46,7 @@ const Home = () => {
         notes={viewController.notes}
         intervals={viewController.intervals}
       />
+      </S.InputContainer>
     </S.Container>
   );
 };

@@ -82,18 +82,16 @@ const HomeViewController = () => {
   }
 
   function newLine() {
-
-    const data = {
-      name: "verse",
-      chords: [...sheet],
-    };
-
-
-    setVerses((prev) => [...prev, data]);
-    setSheet([]);
+    if (sheet.length > 0) {
+      const data = {
+        name: "verse",
+        chords: [...sheet],
+      };
+      setVerses((prev) => [...prev, data]);
+      setSheet([]);
+    }
   }
 
-  console.log(verses);
 
   return {
     notes,

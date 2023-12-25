@@ -13,6 +13,8 @@ export const SheetInsert = styled.div`
   gap: 8px;
   justify-content: center;
   /* margin-left: 16px; */
+  margin-bottom: 0px;
+  
 `;
 export const IntervalInsert = styled.div`
   /* margin-top: auto; */
@@ -85,6 +87,11 @@ export const ButtonSmall = styled.button<Theme>`
 
 export const Container = styled.div`
   max-width: 100%;
-
   /* overflow-y: hidden; */
+  background-color: ${(props) => props.theme.keyboardBackGround};
+padding: 4px;
+border-radius: 8px;
+margin-bottom: -8px;
+margin-top: auto;
+/* display: flex; */
 `;

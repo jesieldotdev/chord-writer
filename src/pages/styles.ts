@@ -7,12 +7,15 @@ export const Container = styled.div`
   justify-content: end;
   margin-top: auto;
 
+
   /* height: 100%; */
   height: calc(100vh - 80px);
 
   ::-webkit-scrollbar {
     display: none;
   }
+
+
 
   button {
     -webkit-touch-callout: none; /* iOS Safari */
@@ -24,15 +27,15 @@ export const Container = styled.div`
 }
 `;
 export const Title = styled.div`
-  font-weight: 500;
-  font-size: 22px;
+  font-weight: 300;
+  font-size: 20px;
   margin-bottom: auto;
   justify-content: center;
 /* margin-right: auto;
 margin-left: auto; */
 width: 100%;
-text-align: center;
-margin-right: -32px;
+text-align: left;
+margin-left: 22px;
 
 `;
 
@@ -41,6 +44,21 @@ export const Header = styled.div`
 display: flex;
 margin-bottom: auto;
 justify-content: center;
+align-items: center;
 width: 100%;
 padding-right: 16px;
+padding-bottom: 8px;
+background-color: ${(props) => props.theme.body};
+box-shadow: 0px 10px 40px -10px ${(props) => props.theme.boxShadowColor };
+margin-top: -4px;
+
+.note-icon{
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+`
+
+export const InputContainer = styled.div`
+margin-top: auto;
 `

@@ -17,7 +17,7 @@ const ChordInput = ({
   const { theme } = useContext(Context);
   if (show) {
     return (
-      <S.Container>
+      <S.Container theme={theme}>
         <S.IntervalInsert>
           {intervals.map((int) => (
             <S.ButtonSmall
@@ -48,18 +48,7 @@ const ChordInput = ({
               {note}
             </S.Button>
           ))}
-
-          <S.Button
-            style={{
-              marginRight: "auto",
-            }}
-            // className="delete"
-            theme={theme}
-            onClick={() => newLine()}
-          >
-            <KeyboardReturn color={theme.text} size={24} />
-          </S.Button>
-          <S.Button
+      <S.Button
             style={{
               marginLeft: "auto",
             }}
@@ -69,6 +58,17 @@ const ChordInput = ({
           >
             <Backspace color={theme.text} size={24} />
           </S.Button>
+          <S.Button
+            style={{
+              // marginRight: "auto",
+            }}
+            // className="delete"
+            theme={theme}
+            onClick={() => newLine()}
+          >
+            <KeyboardReturn color={theme.text} size={24} />
+          </S.Button>
+    
 
           {/* <S.Button
             className="delete"
