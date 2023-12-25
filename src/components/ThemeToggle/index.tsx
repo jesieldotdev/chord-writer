@@ -1,20 +1,36 @@
 // ThemeToggle.tsx
 import React, { Fragment, useContext } from "react";
 import Provider, { Context } from "../../global/Context";
-import {DarkMode } from "@styled-icons/material";
+import { DarkMode, LightMode } from "@styled-icons/material";
 import { Theme } from "../../global/themes";
 
 const ThemeToggle: React.FC = () => {
-  const { toggleTheme, theme } = useContext<Theme | any>(Context);
+  const { toggleTheme, theme, isDark } = useContext<Theme | any>(Context);
 
   return (
     <>
-    {/* <button onClick={toggleTheme}> */}
-        
-        <DarkMode size={32} onClick={toggleTheme} color={theme.text} />
-    {/* </button> */}
-    {/* <DarkMode color="red" /> */}
-
+      {/* <button
+        style={{
+          backgroundColor: theme.text,
+          // borderRadius: "100%",
+          padding: 0,
+        }}
+      > */}
+        {isDark ? (
+          <DarkMode
+            size={32}
+            onClick={toggleTheme}
+            color={theme.text}
+          />
+        ) : (
+          <LightMode
+            size={32}
+            onClick={toggleTheme}
+            color={theme.text}
+          />
+        )}
+      {/* </button> */}
+      {/* <DarkMode color="red" /> */}
     </>
   );
 };

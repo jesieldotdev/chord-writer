@@ -13,13 +13,17 @@ const Provider: React.FC = ({
     children
 }) => {
     const [theme, setTheme] = useState(darkTheme);
+    const [isDark, setIsDark] = useState(true);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => prevTheme === lightTheme ? darkTheme : lightTheme);
+    setIsDark(!isDark)
   };
 
+  console.log(isDark)
+
     return (
-        <Context.Provider value={{theme, setTheme, toggleTheme}}>
+        <Context.Provider value={{theme, setTheme, toggleTheme, isDark}}>
             {children}
         </Context.Provider>
     )

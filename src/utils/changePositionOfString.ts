@@ -18,15 +18,9 @@ function changePos(str:string, posicaoOriginal:number, novaPosicao:number) {
     // Converte o array de volta para uma string
     const novaString = arrayDeCaracteres.join('');
 
-    console.log(novaString)
   
     return novaString;
   }
   
-  // Exemplo de uso
-  const minhaString = "abcdefgh";
-  const novaString = changePos(minhaString, 1, 4);
-  
-  console.log(novaString); // Saída: "adcbefgh"
 
 export default changePos

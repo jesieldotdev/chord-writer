@@ -8,7 +8,7 @@ export const Container = styled.div`
   margin-top: auto;
 
   /* height: 100%; */
-  height: calc(100vh - 20px);
+  height: calc(100vh - 80px);
 
   ::-webkit-scrollbar {
     display: none;
@@ -27,5 +27,20 @@ export const Title = styled.div`
   font-weight: 500;
   font-size: 22px;
   margin-bottom: auto;
-  justify-content: start;
+  justify-content: center;
+/* margin-right: auto;
+margin-left: auto; */
+width: 100%;
+text-align: center;
+margin-right: -32px;
+
 `;
+
+
+export const Header = styled.div`
+display: flex;
+margin-bottom: auto;
+justify-content: center;
+width: 100%;
+padding-right: 16px;
+`
