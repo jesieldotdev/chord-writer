@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 
   /* height: 100%; */
-  height: calc(100vh - 80px);
+  height: calc(100vh - 120px);
 
   ::-webkit-scrollbar {
     display: none;

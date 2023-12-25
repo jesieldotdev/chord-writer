@@ -18,7 +18,7 @@ const Home = () => {
           marginRight: 16
         }}>
         <S.Title>
-          <MusicNote className="note-icon" color={theme.text} size={20} /> Chord Writter
+          <MusicNote className="note-icon" color={theme.text} size={20} />{document.title}
         </S.Title>
         <KeyboardHide
           onClick={() => viewController.setShowKeyboard(false)}

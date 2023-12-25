@@ -89,9 +89,10 @@ export const Container = styled.div`
   max-width: 100%;
   /* overflow-y: hidden; */
   background-color: ${(props) => props.theme.keyboardBackGround};
-padding: 4px;
+padding: 0px;
 border-radius: 8px;
-margin-bottom: -8px;
-margin-top: auto;
+margin-bottom: -52px;
+padding-top: 8px;
+/* background-color: red; */
 /* display: flex; */
 `;

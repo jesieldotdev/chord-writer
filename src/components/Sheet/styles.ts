@@ -1,24 +1,24 @@
 import styled from "styled-components";
 
 export const SheetWrapper = styled.div`
+
   overflow-y: scroll;
   margin-bottom: 16px;
 
+
   flex-wrap: wrap;
   display: flex;
-  
+margin-bottom: 0;
+margin-top: 8px;
 
-  box-shadow: 0px -10px 0px -10px ${(props) => props.theme.boxShadowColor};
-width: 100%;
 `;
 
 export const Label = styled.label`
   text-align: center;
   /* width: 120px; */
   display: flex;
-  margin-top: 16px;
+  margin-top: 8px;
   margin-bottom: 8px;
-  margin-left: 8px;
 `;
 
 export const BlockSheet = styled.div`
@@ -53,22 +53,28 @@ export const BlockSheet = styled.div`
   }
 `;
 
+
 export const Verse = styled.div`
   /* background-color: #363636; */
   overflow-y: scroll;
   margin-bottom: 16px;
 
+
   flex-wrap: wrap;
   display: flex;
 
-  .title {
+  .title{
     font-size: 12px;
     font-weight: 300;
   }
-`;
+
+  
+
+  
+` 
 
 export const ChordItem = styled.div`
-  background-color: ${(props) => props.theme.buttonBackground};
+ background-color: ${(props) => props.theme.buttonBackground};
   color: ${(props) => props.theme.text};
   border-radius: 8px;
 
@@ -97,13 +103,14 @@ export const ChordItem = styled.div`
     font-size: 12px;
     font-weight: 300;
   }
-`;
+
+
+`
 
 export const VerseContainer = styled.div`
-  overflow-y: scroll;
-  margin-bottom: auto;
-  margin-top: 16px;
-  ::-webkit-scrollbar {
-    display: block;
-  }
-`;
+width: 100%;
+  /* background-color: red; */
+  height: 290px;
+overflow-y: scroll;
+margin-top: 8px;
+`
