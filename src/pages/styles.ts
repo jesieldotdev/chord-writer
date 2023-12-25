@@ -9,6 +9,10 @@ export const Container = styled.div`
 
   /* height: 100%; */
   height: calc(100vh - 20px);
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 export const Title = styled.div`
   font-weight: 500;

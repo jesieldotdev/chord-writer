@@ -41,10 +41,10 @@ export const Button = styled.button`
   align-items: center;
   display: flex;
   text-align: center;
+  justify-content: center;
 `;
 export const ButtonSmall = styled.button`
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  padding: 24px;
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
@@ -55,8 +55,8 @@ export const ButtonSmall = styled.button`
   width: 32px;
 
   height: 32px;
-  font-weight: 500;
-  font-size: 22px;
+  font-weight: 300;
+  font-size: 16px;
   align-items: center;
   display: flex;
   text-align: center;
@@ -67,6 +67,7 @@ export const ButtonSmall = styled.button`
 
 export const Container = styled.div`
 
-max-width: 300px;
+max-width: 100%;
+
 /* overflow-y: hidden; */
 `
