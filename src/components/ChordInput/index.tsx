@@ -39,15 +39,15 @@ const ChordInput = ({
   // }, []);
 
   return (
-    <>
-      <S.IntervalInsert gridcolls="repeat(6, 1fr)">
+    <S.Container>
+      <S.IntervalInsert>
         {intervals.map((int) => (
           <S.ButtonSmall  onClick={() => addChord(int, "interval")}>
             {int}
           </S.ButtonSmall>
         ))}
       </S.IntervalInsert>
-      <S.SheetInsert gridcolls="repeat(4, 1fr)">
+      <S.SheetInsert>
         {notes.map((note) => (
           <S.Button onClick={() => addChord(note, "note")}>
             {note}
@@ -56,7 +56,7 @@ const ChordInput = ({
 
         <S.Button onClick={() => removeChord()}>🗑️</S.Button>
       </S.SheetInsert>
-    </>
+    </S.Container>
   );
 };
 

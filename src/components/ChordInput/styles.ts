@@ -5,18 +5,22 @@ export const SheetInsert = styled.div`
   /* margin-bottom: -67px; */
   display: grid;
   /* height: 200px; */
-  grid-template-columns: ${(props) => props.gridColls || 'repeat(4, 1fr)'}; 
+  grid-template-columns: repeat(4, 1fr); 
   gap: 8px;
-  margin-bottom: auto;
 `;
 export const IntervalInsert = styled.div`
   /* margin-top: auto; */
   /* margin-bottom: -67px; */
   display: grid;
-  min-height: 200px;
-  grid-template-columns: ${(props) => props.gridcolls || 'repeat(4, 1fr)'}; 
+  max-height: min-content;
+  grid-template-columns: repeat(5, 1fr); 
   gap: 8px;
-  margin-top: 56px;
+  margin-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 8px;
+
+
+ 
 `;
 
 export const Button = styled.button`
@@ -29,15 +33,14 @@ export const Button = styled.button`
   background-color: #282828;
   border-radius: 8px;
 
-  width: 84px;
+  width: 64px;
 
-  height: 84px;
+  height: 64px;
   font-weight: 500;
   font-size: 22px;
   align-items: center;
   display: flex;
   text-align: center;
-  justify-content: center;
 `;
 export const ButtonSmall = styled.button`
   padding: 0.6em 1.2em;
@@ -49,13 +52,21 @@ export const ButtonSmall = styled.button`
   background-color: #282828;
   border-radius: 8px;
 
-  width: 44px;
+  width: 32px;
 
-  height: 44px;
+  height: 32px;
   font-weight: 500;
   font-size: 22px;
   align-items: center;
   display: flex;
   text-align: center;
   justify-content: center;
+  margin-bottom: 0px;
+  margin-top: 0px;
 `;
+
+export const Container = styled.div`
+
+max-width: 300px;
+/* overflow-y: hidden; */
+`

@@ -3,10 +3,14 @@ import styled from "styled-components";
 export const SheetWrapper = styled.div`
   margin-bottom: auto;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 8px;
   text-align: center;
   max-height: max-content;
+  max-width: 300px;
+  width: 100%;
+  overflow-y: scroll;
+  margin-bottom: 16px;
 `;
 
 export const Label = styled.label`
@@ -31,12 +35,12 @@ export const BlockSheet = styled.div`
   display: flex;
   text-align: center;
   justify-content: center;
-  margin-bottom: 32px;
-
-  margin-top: 8px;
+  /* margin-bottom: 8px; */
+margin: 0;
+  /* margin-top: 8px; */
   /* margin-bottom: 100px; */
 
-  label{
+  label {
     font-size: 16px;
     font-weight: 300;
   }
