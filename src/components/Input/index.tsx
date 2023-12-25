@@ -1,6 +1,4 @@
 import * as S from "./styles";
-import ChordButton from "../ChordButton";
-import { Key, useEffect } from "react";
 
 interface ChordInputProps {
   notes: string[];

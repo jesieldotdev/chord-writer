@@ -1,23 +1,21 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import * as S from "./styles";
+// import "./App.css";
+import {GlobalStyles}  from './global/GlobalStyles';
 import Home from "./pages";
-import React from "react";
+import React, { useContext } from "react";
+import Provider, { Context } from "./global/Context";
 
 function App() {
-  React.useEffect(() => {
-    // Define o título da página ao montar o componente
-    document.title = "Chord Writter";
+  const {theme} = useContext(Context);
 
-    // Esta função será executada quando o componente for desmontado
+  React.useEffect(() => {
+    document.title = "Chord Writter";
     return () => {
-      document.title = "Página não encontrada"; // Opcional: restaura o título original
+      document.title = "Página não encontrada";
     };
   }, []);
   return (
     <>
+      <GlobalStyles Theme={theme} />
       <Home />
     </>
   );

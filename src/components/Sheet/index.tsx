@@ -1,5 +1,4 @@
 import * as S from "./styles";
-import ChordButton from "../ChordButton";
 import { SheetProps } from "../../types";
 
 interface ChordInputProps {

@@ -1,15 +1,15 @@
-import ChordInput from "../components/ChordInput";
-import ChordSheet from "../components/ChordSheet";
+import ChordInput from "../components/Input";
+import ChordSheet from "../components/Sheet";
 import * as S from "./styles";
 import HomeViewController from "./viewController";
+import ThemeToggle from "../components/ThemeToggle";
 
 const Home = () => {
   const viewController = HomeViewController();
 
-  console.log(viewController.notes);
-
   return (
     <S.Container>
+      <ThemeToggle/>
       <S.Title>Chord Writter</S.Title>
       <ChordSheet chords={viewController.sheet} />
 

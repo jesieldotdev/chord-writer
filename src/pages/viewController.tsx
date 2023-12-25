@@ -71,7 +71,6 @@ const HomeViewController = () => {
         setSheet(newArray);
       }
     }
-    console.log(sheet);
 
   }
   function removeChord() {
