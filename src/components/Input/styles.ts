@@ -1,18 +1,20 @@
 import styled from "styled-components";
+import { Theme } from "../../global/themes";
+
 
 export const SheetInsert = styled.div`
   /* margin-top: auto; */
   /* margin-bottom: -67px; */
   display: grid;
   /* height: 200px; */
-  grid-template-columns: repeat(4, 1fr); 
+  grid-template-columns: repeat(5, 1fr); 
   gap: 8px;
 `;
 export const IntervalInsert = styled.div`
   /* margin-top: auto; */
   /* margin-bottom: -67px; */
   display: grid;
-  max-height: min-content;
+  /* max-height: min-content; */
   grid-template-columns: repeat(5, 1fr); 
   gap: 8px;
   margin-bottom: 0;
@@ -23,14 +25,17 @@ export const IntervalInsert = styled.div`
  
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<Theme>`
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
 
-  background-color: #282828;
+  /* background-color: #282828; */
+  background-color: ${(props) =>  props.theme.buttonBackground};
+  color: ${(props) =>  props.theme.text};
+
   border-radius: 8px;
 
   width: 64px;
@@ -43,16 +48,17 @@ export const Button = styled.button`
   text-align: center;
   justify-content: center;
 `;
-export const ButtonSmall = styled.button`
+export const ButtonSmall = styled.button<Theme>`
   padding: 24px;
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
 
-  background-color: #282828;
+  background-color: ${(props) =>  props.theme.buttonBackground};
+  color: ${(props) =>  props.theme.text};
   border-radius: 8px;
 
-  width: 32px;
+  width: 64px;
 
   height: 32px;
   font-weight: 300;

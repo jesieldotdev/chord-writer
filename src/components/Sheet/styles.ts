@@ -11,26 +11,23 @@ export const SheetWrapper = styled.div`
   overflow-y: scroll;
   margin-bottom: 16px;
 
+  /* grid-template-columns: repeat(4, 1fr); */
 
-    /* grid-template-columns: repeat(4, 1fr); */
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+  display: flex;
 
-      flex-wrap: wrap;
-      /* justify-content: space-between; */
-      display: flex;
-
-    /* .grid-container {
+  /* .grid-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
     } */
 
-    /* .grid-item {
+  /* .grid-item {
       width: 23%; 
       margin-bottom: 20px;
       box-sizing: border-box;
     } */
-
-
 `;
 
 export const Label = styled.label`
@@ -42,7 +39,8 @@ export const Label = styled.label`
 `;
 
 export const BlockSheet = styled.div`
-  background-color: #363636;
+  background-color: ${(props) => props.theme.buttonBackground};
+  color: ${(props) => props.theme.text};
   border-radius: 8px;
 
   padding: 8px;
@@ -61,11 +59,10 @@ export const BlockSheet = styled.div`
 
   width: min-content; /* Ajuste conforme necessário */
   height: min-content; /* Ajuste conforme necessário */
-      margin-bottom: 20px;
-      box-sizing: border-box;
-      align-items: flex-start;
-      margin: 4px;
-
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  align-items: flex-start;
+  margin: 4px;
 
   label {
     font-size: 16px;
