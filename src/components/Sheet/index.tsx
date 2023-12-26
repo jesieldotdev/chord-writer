@@ -1,5 +1,5 @@
 import * as S from "./styles";
-import { SheetProps, VerseProps } from "../../types";
+import { NewTitle, SheetProps, VerseProps } from "../../types";
 import { useContext } from "react";
 import { Context } from "../../global/Context";
 import React from "react";
@@ -9,7 +9,7 @@ interface ChordInputProps {
   chords: SheetProps[];
   // intervals: string
   verses: VerseProps[];
-  editTitleFn: (verse: NewTitle) => any
+  editTitleFn: (verse: NewTitle) => any;
 }
 
 const ChordSheet = ({ chords, verses, editTitleFn }: ChordInputProps) => {
@@ -31,12 +31,16 @@ const ChordSheet = ({ chords, verses, editTitleFn }: ChordInputProps) => {
               <>
                 <S.Verse
                   key={verse.id}
-                  // onClick={() => setEditMode(false)}
+                 
                   theme={theme}
                   className="sheetBlock"
                 >
                   {editMode && editVerseTitle === verse.id ? (
-                    <EditTitle editTitleFn={editTitleFn} setShow={setEditMode} value={verse} />
+                    <EditTitle
+                      editTitleFn={editTitleFn}
+                      setShow={setEditMode}
+                      value={verse}
+                    />
                   ) : (
                     <label
                       onClick={() => editVerse(verse.id)}
@@ -46,7 +50,9 @@ const ChordSheet = ({ chords, verses, editTitleFn }: ChordInputProps) => {
                     </label>
                   )}
                   {verse.chords?.map((inp) => (
-                    <S.ChordItem theme={theme}>
+                    <S.ChordItem  onClick={() => {
+                      editMode ? setEditMode(false) : null;
+                    }} theme={theme}>
                       {inp.note}
                       <label>
                         {inp.intervals.map((n, index) => {
