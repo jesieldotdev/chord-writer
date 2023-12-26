@@ -1,16 +1,13 @@
 import styled from "styled-components";
 
 export const SheetWrapper = styled.div`
-
   overflow-y: scroll;
   margin-bottom: 16px;
 
-
   flex-wrap: wrap;
   display: flex;
-margin-bottom: 0;
-margin-top: 8px;
-
+  margin-bottom: 0;
+  margin-top: 8px;
 `;
 
 export const Label = styled.label`
@@ -53,28 +50,17 @@ export const BlockSheet = styled.div`
   }
 `;
 
-
 export const Verse = styled.div`
   /* background-color: #363636; */
   overflow-y: scroll;
   margin-bottom: 16px;
 
-
   flex-wrap: wrap;
   display: flex;
-
-  .title{
-    font-size: 12px;
-    font-weight: 300;
-  }
-
-  
-
-  
-` 
+`;
 
 export const ChordItem = styled.div`
- background-color: ${(props) => props.theme.buttonBackground};
+  background-color: ${(props) => props.theme.buttonBackground};
   color: ${(props) => props.theme.text};
   border-radius: 8px;
 
@@ -103,14 +89,16 @@ export const ChordItem = styled.div`
     font-size: 12px;
     font-weight: 300;
   }
-
-
-`
+`;
 
 export const VerseContainer = styled.div`
-width: 100%;
+  width: 100%;
   /* background-color: red; */
   height: 260px;
-overflow-y: scroll;
-margin-top: 8px;
-`
+  overflow-y: scroll;
+  margin-top: 8px;
+  .verse-title {
+    font-size: 16px;
+    font-weight: 200;
+  }
+`;

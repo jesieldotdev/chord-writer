@@ -29,13 +29,27 @@ const ChordSheet = ({ chords, verses, editTitleFn }: ChordInputProps) => {
           {verses.map((verse) => {
             return (
               <>
+               {editMode && editVerseTitle === verse.id ? (
+                    <EditTitle
+                      editTitleFn={editTitleFn}
+                      setShow={setEditMode}
+                      value={verse}
+                    />
+                  ) : (
+                    <label
+                      onClick={() => editVerse(verse.id)}
+                      className="verse-title"
+                    >
+                      {verse.name}
+                    </label>
+                  )}
                 <S.Verse
                   key={verse.id}
                  
                   theme={theme}
                   className="sheetBlock"
                 >
-                  {editMode && editVerseTitle === verse.id ? (
+                  {/* {editMode && editVerseTitle === verse.id ? (
                     <EditTitle
                       editTitleFn={editTitleFn}
                       setShow={setEditMode}
@@ -48,7 +62,7 @@ const ChordSheet = ({ chords, verses, editTitleFn }: ChordInputProps) => {
                     >
                       {verse.name}
                     </label>
-                  )}
+                  )} */}
                   {verse.chords?.map((inp) => (
                     <S.ChordItem  onClick={() => {
                       editMode ? setEditMode(false) : null;
