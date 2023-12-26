@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SheetProps, VerseProps } from "../types";
+import { NewTitle, SheetProps, VerseProps } from "../types";
 import changePos from "../utils/changePositionOfString";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -94,6 +94,20 @@ const HomeViewController = () => {
     }
   }
 
+  function editarNomePorId(id, novoNome) {
+    for (let i = 0; i < verses.length; i++) {
+      if (verses[i].id === id) {
+        verses[i].name = novoNome;
+        break; // Termina o loop após encontrar o objeto com o id correspondente
+      }
+    }
+  }
+
+  function editTitle(verse: NewTitle){
+    editarNomePorId(verse.id, verse.newName);
+
+  }
+
 
   return {
     notes,
@@ -106,6 +120,7 @@ const HomeViewController = () => {
     setShowKeyboard,
     newLine,
     verses,
+    editTitle
   };
 };
 

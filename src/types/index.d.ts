@@ -9,3 +9,8 @@ export interface VerseProps {
   name: string;
   chords: SheetProps[];
 }
+
+export interface NewTitle{
+  id: string
+  newName: string
+}

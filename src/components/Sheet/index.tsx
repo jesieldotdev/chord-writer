@@ -9,20 +9,18 @@ interface ChordInputProps {
   chords: SheetProps[];
   // intervals: string
   verses: VerseProps[];
+  editTitleFn: (verse: NewTitle) => any
 }
 
-
-
-const ChordSheet = ({ chords, verses }: ChordInputProps) => {
+const ChordSheet = ({ chords, verses, editTitleFn }: ChordInputProps) => {
   const { theme } = useContext(Context);
   const [editVerseTitle, setEditVerseTitle] = React.useState<string>();
+  const [editMode, setEditMode] = React.useState<boolean>(false);
 
-  function editVerse(verseId: string){
-    setEditVerseTitle(verseId)
-
-
+  function editVerse(verseId: string) {
+    setEditMode(true);
+    setEditVerseTitle(verseId);
   }
-
 
   return (
     <>
@@ -31,11 +29,21 @@ const ChordSheet = ({ chords, verses }: ChordInputProps) => {
           {verses.map((verse) => {
             return (
               <>
-                <S.Verse theme={theme} className="sheetBlock">
-                  {editVerseTitle !== verse.id ? (
-                    <label onClick={()=> setEditVerseTitle(verse.id)} className="title">{verse.name}</label>
+                <S.Verse
+                  key={verse.id}
+                  // onClick={() => setEditMode(false)}
+                  theme={theme}
+                  className="sheetBlock"
+                >
+                  {editMode && editVerseTitle === verse.id ? (
+                    <EditTitle editTitleFn={editTitleFn} setShow={setEditMode} value={verse} />
                   ) : (
-                    <EditTitle value={verse.name} />
+                    <label
+                      onClick={() => editVerse(verse.id)}
+                      className="title"
+                    >
+                      {verse.name}
+                    </label>
                   )}
                   {verse.chords?.map((inp) => (
                     <S.ChordItem theme={theme}>
