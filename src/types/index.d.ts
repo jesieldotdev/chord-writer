@@ -1,10 +1,11 @@
 export interface SheetProps {
-    note: string;
-    intervals: string[];
-    // id: string;
-  }
+  note: string;
+  intervals: string[];
+  // id: string;
+}
 
-  export interface VerseProps{
-   name: string
-   chords: SheetProps[] 
-  }
+export interface VerseProps {
+  id: string;
+  name: string;
+  chords: SheetProps[];
+}

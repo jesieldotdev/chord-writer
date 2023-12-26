@@ -110,7 +110,7 @@ export const ChordItem = styled.div`
 export const VerseContainer = styled.div`
 width: 100%;
   /* background-color: red; */
-  height: 290px;
+  height: 260px;
 overflow-y: scroll;
 margin-top: 8px;
 `

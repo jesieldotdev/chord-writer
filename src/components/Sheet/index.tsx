@@ -2,6 +2,8 @@ import * as S from "./styles";
 import { SheetProps, VerseProps } from "../../types";
 import { useContext } from "react";
 import { Context } from "../../global/Context";
+import React from "react";
+import EditTitle from "./Components/EditTitle";
 
 interface ChordInputProps {
   chords: SheetProps[];
@@ -9,10 +11,18 @@ interface ChordInputProps {
   verses: VerseProps[];
 }
 
+
+
 const ChordSheet = ({ chords, verses }: ChordInputProps) => {
   const { theme } = useContext(Context);
+  const [editVerseTitle, setEditVerseTitle] = React.useState<string>();
 
-  console.log(verses);
+  function editVerse(verseId: string){
+    setEditVerseTitle(verseId)
+
+
+  }
+
 
   return (
     <>
@@ -21,10 +31,12 @@ const ChordSheet = ({ chords, verses }: ChordInputProps) => {
           {verses.map((verse) => {
             return (
               <>
-                <S.Verse theme={theme}
-                     
-                      className="sheetBlock">
-                  <label className="title">{verse.name}</label>
+                <S.Verse theme={theme} className="sheetBlock">
+                  {editVerseTitle !== verse.id ? (
+                    <label onClick={()=> setEditVerseTitle(verse.id)} className="title">{verse.name}</label>
+                  ) : (
+                    <EditTitle value={verse.name} />
+                  )}
                   {verse.chords?.map((inp) => (
                     <S.ChordItem theme={theme}>
                       {inp.note}

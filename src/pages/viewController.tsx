@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { SheetProps, VerseProps } from "../types";
 import changePos from "../utils/changePositionOfString";
+import { v4 as uuidv4 } from 'uuid';
 
 const HomeViewController = () => {
   const notes = ["C", "D", "E", "F", "G", "A", "B"] as string[];
@@ -84,6 +85,7 @@ const HomeViewController = () => {
   function newLine() {
     if (sheet.length > 0) {
       const data = {
+        id: uuidv4(),
         name: "verse",
         chords: [...sheet],
       };
