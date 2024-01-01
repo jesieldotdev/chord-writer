@@ -7,8 +7,8 @@ export const Content = styled.div<Theme>`
 `;
 
 export const Input = styled.input<Theme>`
-  background-color: ${(props) => props.theme.buttonBackground};
-  /* color: ${(props) => props.theme.text}; */
+  background-color: ${(props) => props.theme.keyboardBackGround};
+  color: ${(props) => props.theme.text};
   min-width: 67px;
   max-width: 200px;
   padding: 8px;
