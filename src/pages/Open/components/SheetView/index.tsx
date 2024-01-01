@@ -4,24 +4,36 @@ import * as S from "./styles";
 // import HomeViewController from "./viewController";
 import ThemeToggle from "../../../../components/ThemeToggle";
 import { MusicNote } from "styled-icons/material";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../../../../global/Context";
 import { KeyboardHide } from "@styled-icons/material-rounded";
 import { FolderOpen } from "styled-icons/boxicons-solid";
 import { Link, useParams } from "react-router-dom";
 import HomeViewController from "../../../Home/viewController";
 import SheetViewController from './viewController'
+import { VerseProps } from "../../../../types";
 
 const SheetView = () => {
   const { id } = useParams();
   console.log(id)
   const viewController = HomeViewController();
-  const SheetViewControl = SheetViewController((`${id}`))
+  
+  const [data, setData] = useState<VerseProps[]>([])
+
+
+  useEffect(() => {
+      fetch(`http://ec2-18-231-159-123.sa-east-1.compute.amazonaws.com:5000/verse/${id}`)
+        .then((response) => {
+          if (!response.ok) throw new Error("Erro na requisição");
+          return response.json();
+        })
+        .then((data) => setData(data))
+        .catch((error) => console.log(error));
+     }, []);
   const { theme } = useContext(Context);
 
-  SheetViewControl
 
-
+console.log(data)
 
 
   return (
@@ -62,14 +74,14 @@ const SheetView = () => {
         <ThemeToggle />
       </S.Header>
 
-      {/* <S.InputContainer theme={theme}>
+   <S.InputContainer theme={theme}>
         <ChordSheet
           editTitleFn={viewController.editTitle}
-          verses={viewController.verses}
+          verses={[data]}
           chords={viewController.sheet}
         />
 
-        <ChordInput
+        {/* <ChordInput
           show={viewController.showKeyboard}
           setShow={(e) => viewController.setShowKeyboard(e)}
           addChord={viewController.addChord}
@@ -77,8 +89,8 @@ const SheetView = () => {
           newLine={viewController.newLine}
           notes={viewController.notes}
           intervals={viewController.intervals}
-        />
-      </S.InputContainer> */}
+        /> */}
+      </S.InputContainer> 
     </S.Container>
   );
 };
