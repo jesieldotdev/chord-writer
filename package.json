@@ -15,6 +15,7 @@
     "@styled-icons/material-rounded": "^10.47.0",
     "@types/swiper": "^6.0.0",
     "add": "^2.0.6",
+    "depcheck": "^1.4.7",
     "install": "^0.13.0",
     "notistack": "^3.0.1",
     "npm": "^10.2.5",

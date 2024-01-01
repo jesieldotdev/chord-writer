@@ -3,10 +3,12 @@ import * as S from "./styles";
 import { FileEarmarkMusicFill, Plus } from "styled-icons/bootstrap";
 import { Link } from "react-router-dom";
 import SwipeToDelete from "../../components/Swippe";
+import React from "react";
+import { Context } from "../../global/Context";
 
 export default function OpenView() {
   const viewController = OpenViewController();
-
+const {theme} = React.useContext(Context)
   return (
     <S.Container>
       <div
@@ -33,7 +35,7 @@ export default function OpenView() {
         return (
           <SwipeToDelete key={music._id} functionDelete={viewController.deleteMusic} music={music}>
             <Link to={`/sheet/${music._id}`} key={music._id}>
-              <S.Item>
+              <S.Item theme={theme}>
                 <S.IconLeft>
                   <FileEarmarkMusicFill size={32} />
                 </S.IconLeft>

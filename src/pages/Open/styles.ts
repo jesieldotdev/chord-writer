@@ -5,7 +5,7 @@ export const Item = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: left;
-  background-color: #363636;
+  background-color: ${(props) => props.theme.keyboardBackGround};
   padding: 8px;
   gap: 4px;
   margin-bottom: 8px;

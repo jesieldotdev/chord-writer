@@ -4,19 +4,18 @@ import {
 } from "@sandstreamdev/react-swipeable-list";
 import "@sandstreamdev/react-swipeable-list/dist/styles.css";
 import { Music } from "../../types";
+import React from "react";
+import { Context } from "../../global/Context";
 
 interface SwipeToDeleteProps{
-  functionDelete: ()=> any
+  functionDelete: (_id: string)=> any
   music: Music
   chidren: any
 }
 
 const SwipeToDelete = ({functionDelete,music, children}: SwipeToDeleteProps) => {
-  let data = [
-    { id: 1, text: "Item 1" },
-    { id: 2, text: "Item 2" },
-    { id: 3, text: "Item 3" },
-  ];
+
+const {theme} = React.useContext(Context)
 
   function deleteItem() {
     console.log(music);
@@ -38,7 +37,7 @@ const SwipeToDelete = ({functionDelete,music, children}: SwipeToDeleteProps) => 
           }}
         >
           <div style={{
-            background: '#202020',
+            background: theme.body,
             width: '100%'
           }}>{children}</div>
         </SwipeableListItem>
