@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { NewTitle, SheetProps, VerseProps } from "../types";
-import changePos from "../utils/changePositionOfString";
+import { useEffect, useState } from "react";
+import { NewTitle, SheetProps, VerseProps } from "../../types";
+import changePos from "../../utils/changePositionOfString";
 import { v4 as uuidv4 } from 'uuid';
 
 const HomeViewController = () => {
@@ -28,7 +28,10 @@ const HomeViewController = () => {
 
   const [sheet, setSheet] = useState<SheetProps[]>([]);
   const [verses, setVerses] = useState<any>([]);
+  const [data, setData] = useState<any>([]);
   const [showKeyboard, setShowKeyboard] = useState<boolean>(false);
+
+
 
   function addChord(inp: string, type: "note" | "interval") {
     if (type === "note") {
