@@ -86,6 +86,7 @@ const Home = () => {
 
       <S.InputContainer theme={theme}>
         <ChordSheet
+        showKeyboard={viewController.showKeyboard}
           editTitleFn={viewController.editTitle}
           verses={viewController.verses}
           chords={viewController.sheet}

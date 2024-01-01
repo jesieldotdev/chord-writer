@@ -10,9 +10,10 @@ interface ChordInputProps {
   // intervals: string
   verses: VerseProps[];
   editTitleFn: (verse: NewTitle) => any;
+  showKeyboard: boolean
 }
 
-const ChordSheet = ({ chords, verses, editTitleFn }: ChordInputProps) => {
+const ChordSheet = ({ chords, verses, editTitleFn, showKeyboard }: ChordInputProps) => {
   const { theme } = useContext(Context);
   const [editVerseTitle, setEditVerseTitle] = React.useState<string>();
   const [editMode, setEditMode] = React.useState<boolean>(false);
@@ -107,9 +108,9 @@ const ChordSheet = ({ chords, verses, editTitleFn }: ChordInputProps) => {
             </S.BlockSheet>
           ))}
         </S.SheetWrapper>
-      ) : (
-        <S.Label>Type Chord</S.Label>
-      )}
+      ) : showKeyboard ?
+        <S.Label>Digite um acorde</S.Label>
+      : <S.Label>Toque na tela</S.Label>}
     </>
   );
 };
