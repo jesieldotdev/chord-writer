@@ -57,7 +57,7 @@ const Home = () => {
             <Save
               onClick={() => viewController.postMusic()}
               color={theme.text}
-              size={32}
+              size={24}
               style={{
                 marginRight: 8,
               }}
@@ -74,7 +74,7 @@ const Home = () => {
             <KeyboardHide
               onClick={() => viewController.setShowKeyboard(false)}
               color={theme.text}
-              size={32}
+              size={24}
               style={{
                 marginRight: 8,
               }}

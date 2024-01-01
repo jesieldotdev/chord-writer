@@ -18,13 +18,13 @@ const ThemeToggle: React.FC = () => {
       > */}
         {isDark ? (
           <DarkMode
-            size={32}
+            size={24}
             onClick={toggleTheme}
             color={theme.text}
           />
         ) : (
           <LightMode
-            size={32}
+            size={24}
             onClick={toggleTheme}
             color={theme.text}
           />

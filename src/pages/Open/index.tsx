@@ -29,8 +29,6 @@ const {theme} = React.useContext(Context)
         </Link>
       </div>
 
-      {/* <SwipeToDelete >Test</SwipeToDelete> */}
-
       {viewController.data.map((music) => {
         return (
           <SwipeToDelete key={music._id} functionDelete={viewController.deleteMusic} music={music}>
