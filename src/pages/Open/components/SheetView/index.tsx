@@ -7,22 +7,31 @@ import { MusicNote } from "styled-icons/material";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../../../global/Context";
 import { KeyboardHide } from "@styled-icons/material-rounded";
-import { FolderOpen } from "styled-icons/boxicons-solid";
+import { FolderOpen, Save } from "styled-icons/boxicons-solid";
 import { Link, useParams } from "react-router-dom";
 import HomeViewController from "../../../Home/viewController";
 import SheetViewController from './viewController'
-import { VerseProps } from "../../../../types";
+import { Music, VerseProps } from "../../../../types";
+import React from "react";
+import EditTitle from "../../../../components/Sheet/Components/EditTitle";
 
 const SheetView = () => {
+  const [editVerseTitle, setEditVerseTitle] = React.useState<string>();
+  const [editMode, setEditMode] = React.useState<boolean>(false);
+
+  function editVerse(verseId: string) {
+    setEditMode(true);
+    setEditVerseTitle(verseId);
+  }
   const { id } = useParams();
   console.log(id)
   const viewController = HomeViewController();
   
-  const [data, setData] = useState<VerseProps[]>([])
+  const [data, setData] = useState<Music>()
 
 
   useEffect(() => {
-      fetch(`http://ec2-18-231-159-123.sa-east-1.compute.amazonaws.com:5000/verse/${id}`)
+      fetch(`http://ec2-18-231-159-123.sa-east-1.compute.amazonaws.com:5000/music/${id}`)
         .then((response) => {
           if (!response.ok) throw new Error("Erro na requisição");
           return response.json();
@@ -50,10 +59,19 @@ console.log(data)
           marginRight: 16,
         }}
       >
-        <S.Title>
+        <S.Title theme={theme}>
+        <Link to="/">
           <MusicNote className="note-icon" color={theme.text} size={20} />
-          {document.title}
+          {data?.name}
+          </Link>
         </S.Title>
+        {/* <Save
+            color={theme.text}
+            size={32}
+            style={{
+              marginRight: 8,
+            }}
+          /> */}
         <Link to="/sheets">
           <FolderOpen
             color={theme.text}
@@ -63,23 +81,94 @@ console.log(data)
             }}
           />
         </Link>
-        <KeyboardHide
+        {/* <KeyboardHide
           onClick={() => viewController.setShowKeyboard(false)}
           color={theme.text}
           size={32}
           style={{
             marginRight: 8,
           }}
-        />
+        /> */}
         <ThemeToggle />
       </S.Header>
 
    <S.InputContainer theme={theme}>
-        <ChordSheet
+
+   <>
+      {data && data.sheets.length > 0 ? (
+        <S.VerseContainer>
+          {data?.sheets.map((verse) => {
+            return (
+              <>
+               {editMode && editVerseTitle === verse.id ? (
+                    <EditTitle
+                      editTitleFn={editTitleFn}
+                      setShow={setEditMode}
+                      value={verse}
+                    />
+                  ) : (
+                    <label
+                      onClick={() => editVerse(verse.id)}
+                      className="verse-title"
+                    >
+                      {verse.name}
+                    </label>
+                  )}
+                <S.Verse
+                  key={verse.id}
+                 
+                  theme={theme}
+                  className="sheetBlock"
+                >
+                  {/* {editMode && editVerseTitle === verse.id ? (
+                    <EditTitle
+                      editTitleFn={editTitleFn}
+                      setShow={setEditMode}
+                      value={verse}
+                    />
+                  ) : (
+                    <label
+                      onClick={() => editVerse(verse.id)}
+                      className="title"
+                    >
+                      {verse.name}
+                    </label>
+                  )} */}
+                  {verse.chords?.map((inp) => (
+                    <S.ChordItem  onClick={() => {
+                      editMode ? setEditMode(false) : null;
+                    }} theme={theme}>
+                      {inp.note}
+                      <label>
+                        {inp.intervals.map((n, index) => {
+                          return (
+                            <>
+                              {index !== 0 && inp.intervals.length > index
+                                ? "/"
+                                : null}
+                              {n}
+                            </>
+                          );
+                        })}
+                      </label>
+                    </S.ChordItem>
+                  ))}
+                </S.Verse>
+              </>
+            );
+          })}
+        </S.VerseContainer>
+      ) : null}
+
+  
+    </>
+
+
+        {/* <ChordSheet
           editTitleFn={viewController.editTitle}
-          verses={[data]}
+          verses={data?.sheets}
           chords={viewController.sheet}
-        />
+        /> */}
 
         {/* <ChordInput
           show={viewController.showKeyboard}

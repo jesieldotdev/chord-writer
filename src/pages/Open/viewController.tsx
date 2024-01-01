@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { VerseProps } from "../../types";
+import { VerseProps, Music } from "../../types";
 
 export default function OpenViewController(){
-    const [data, setData] = useState<VerseProps[]>([])
+    const [data, setData] = useState<Music[]>([])
 
     useEffect(() => {
         fetch('http://ec2-18-231-159-123.sa-east-1.compute.amazonaws.com:5000/')

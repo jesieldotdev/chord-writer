@@ -14,3 +14,9 @@ export interface NewTitle{
   id: string
   newName: string
 }
+
+interface Music{
+  _id: string,
+  name: string,
+  sheets: VerseProps[],
+}

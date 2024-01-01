@@ -7,8 +7,9 @@ import { MusicNote } from "styled-icons/material";
 import { useContext } from "react";
 import { Context } from "../../global/Context";
 import { KeyboardHide } from "@styled-icons/material-rounded";
-import { FolderOpen } from "styled-icons/boxicons-solid";
-import { Link } from 'react-router-dom';
+import { FolderOpen, Save } from "styled-icons/boxicons-solid";
+import { Link } from "react-router-dom";
+import TitleEdit from "../../components/TitleEdit";
 
 const Home = () => {
   const viewController = HomeViewController();
@@ -29,21 +30,58 @@ const Home = () => {
         }}
       >
         <S.Title>
-          <MusicNote className="note-icon" color={theme.text} size={20} />
-          {document.title}
+          <MusicNote
+            style={{
+              marginRight: 8,
+            }}
+            className="note-icon"
+            color={theme.text}
+            size={20}
+          />
+          {/* {document.title} */}
+          {!viewController.editMode ? (
+            <label onClick={() => viewController.setEditMode(true)}>
+              {viewController.title}
+            </label>
+          ) : (
+            <TitleEdit
+              title={viewController.title}
+              setTitle={viewController.setTitle}
+              setShow={viewController.setEditMode}
+            />
+          )}
         </S.Title>
-        <Link to='/sheets'><FolderOpen color={theme.text} size={32}  style={{
-            marginRight: 8,
-          }} /></Link>
-        <KeyboardHide
-          onClick={() => viewController.setShowKeyboard(false)}
-          color={theme.text}
-          size={32}
-          style={{
-            marginRight: 8,
-          }}
-        />
-        <ThemeToggle />
+
+        {!viewController.editMode ? (
+          <>
+            <Save
+              onClick={() => viewController.postMusic()}
+              color={theme.text}
+              size={32}
+              style={{
+                marginRight: 8,
+              }}
+            />
+            <Link to="/sheets">
+              <FolderOpen
+                color={theme.text}
+                size={24}
+                style={{
+                  marginRight: 8,
+                }}
+              />
+            </Link>
+            <KeyboardHide
+              onClick={() => viewController.setShowKeyboard(false)}
+              color={theme.text}
+              size={32}
+              style={{
+                marginRight: 8,
+              }}
+            />
+            <ThemeToggle />
+          </>
+        ) : null}
       </S.Header>
 
       <S.InputContainer theme={theme}>

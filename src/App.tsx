@@ -9,7 +9,7 @@ function App() {
   const {theme} = useContext(Context);
 
   React.useEffect(() => {
-    document.title = "C13ord Writter";
+    document.title = "Chord Writter";
     return () => {
       document.title = "Página não encontrada";
     };

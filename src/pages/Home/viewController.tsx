@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NewTitle, SheetProps, VerseProps } from "../../types";
 import changePos from "../../utils/changePositionOfString";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const HomeViewController = () => {
   const notes = ["C", "D", "E", "F", "G", "A", "B"] as string[];
@@ -26,12 +26,12 @@ const HomeViewController = () => {
     "13",
   ];
 
+  const [title, setTitle] = useState<string>("Untitled");
+  const [editMode, setEditMode] = useState<boolean>(false);
   const [sheet, setSheet] = useState<SheetProps[]>([]);
   const [verses, setVerses] = useState<any>([]);
   const [data, setData] = useState<any>([]);
   const [showKeyboard, setShowKeyboard] = useState<boolean>(false);
-
-
 
   function addChord(inp: string, type: "note" | "interval") {
     if (type === "note") {
@@ -106,11 +106,31 @@ const HomeViewController = () => {
     }
   }
 
-  function editTitle(verse: NewTitle){
+  function editTitle(verse: NewTitle) {
     editarNomePorId(verse.id, verse.newName);
-
   }
 
+  function postMusic() {
+    console.log(title);
+    console.log(verses);
+    const postData = {
+      name: title,
+      sheets: verses,
+    };
+
+    fetch("http://ec2-18-231-159-123.sa-east-1.compute.amazonaws.com:5000/music", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
 
   return {
     notes,
@@ -123,7 +143,12 @@ const HomeViewController = () => {
     setShowKeyboard,
     newLine,
     verses,
-    editTitle
+    editTitle,
+    title,
+    setTitle,
+    editMode,
+    setEditMode,
+    postMusic,
   };
 };
 
