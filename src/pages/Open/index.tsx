@@ -2,6 +2,7 @@ import OpenViewController from "./viewController";
 import * as S from "./styles";
 import { FileEarmarkMusicFill, Plus } from "styled-icons/bootstrap";
 import { Link } from "react-router-dom";
+import SwipeToDelete from "../../components/Swippe";
 
 export default function OpenView() {
   const viewController = OpenViewController();
@@ -21,21 +22,31 @@ export default function OpenView() {
         }}
       >
         <label> Cifras</label>
-        <Link to='/'><Plus style={{}} size={32} /></Link>
+        <Link to="/">
+          <Plus style={{}} size={32} />
+        </Link>
       </div>
+
+      {/* <SwipeToDelete >Test</SwipeToDelete> */}
+
       {viewController.data.map((music) => {
         return (
-          <Link to={`/sheet/${music._id}`} key={music._id}>
-            <S.Item>
-              <S.IconLeft>
-                <FileEarmarkMusicFill size={32} />
-              </S.IconLeft>
-              <div className="content">
-                <label className="title">{music.name}</label>
-                <label className="subtitle">{music.sheets.length} partes</label>
-              </div>
-            </S.Item>
-          </Link>
+          <SwipeToDelete key={music._id} functionDelete={viewController.deleteMusic} music={music}>
+            <Link to={`/sheet/${music._id}`} key={music._id}>
+              <S.Item>
+                <S.IconLeft>
+                  <FileEarmarkMusicFill size={32} />
+                </S.IconLeft>
+                <div className="content">
+                  <label className="title">{music.name}</label>
+                  <label className="subtitle">
+                    {music.sheets.length}{" "}
+                    {music.sheets.length > 1 ? "versos" : "verso"}
+                  </label>
+                </div>
+              </S.Item>
+            </Link>
+          </SwipeToDelete>
         );
       })}
     </S.Container>

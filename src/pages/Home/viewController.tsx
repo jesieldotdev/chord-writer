@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NewTitle, SheetProps, VerseProps } from "../../types";
 import changePos from "../../utils/changePositionOfString";
 import { v4 as uuidv4 } from "uuid";
+import { enqueueSnackbar } from "notistack";
 
 const HomeViewController = () => {
   const notes = ["C", "D", "E", "F", "G", "A", "B"] as string[];
@@ -118,17 +119,23 @@ const HomeViewController = () => {
       sheets: verses,
     };
 
-    fetch("http://ec2-18-231-159-123.sa-east-1.compute.amazonaws.com:5000/music", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(postData),
-    })
+    fetch(
+      "http://ec2-18-231-159-123.sa-east-1.compute.amazonaws.com:5000/music",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      }
+    )
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        enqueueSnackbar("Salvo com sucesso!");
+      })
       .catch((error) => {
         console.error("Error:", error);
+        enqueueSnackbar("Erro: ", error);
       });
   }
 
