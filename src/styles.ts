@@ -41,7 +41,7 @@ export const BlockSheet = styled.div`
   justify-content: center;
   margin-bottom: 4px;
   .sheetBlock {
-    background-color: red;
+    /* background-color: red; */
   }
 `;
 
