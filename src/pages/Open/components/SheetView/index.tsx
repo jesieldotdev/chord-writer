@@ -15,6 +15,7 @@ import { Music, VerseProps } from "../../../../types";
 import React from "react";
 import EditTitle from "../../../../components/Sheet/Components/EditTitle";
 import { FileEmpty } from "styled-icons/icomoon";
+import { getMusicById } from "../../../../api/services";
 
 const SheetView = () => {
   const [editVerseTitle, setEditVerseTitle] = React.useState<string>();
@@ -24,26 +25,9 @@ const SheetView = () => {
     setEditMode(true);
     setEditVerseTitle(verseId);
   }
-  const { id } = useParams();
-  console.log(id);
-  const viewController = HomeViewController();
 
-  const [data, setData] = useState<Music>();
+  const viewController = SheetViewController()
 
-  useEffect(() => {
-    fetch(
-      `http://ec2-18-231-159-123.sa-east-1.compute.amazonaws.com:5000/music/${id}`
-    )
-      .then((response) => {
-        if (!response.ok) throw new Error("Erro na requisição");
-        return response.json();
-      })
-      .then((data) => setData(data))
-      .catch((error) => console.log(error));
-  }, []);
-  const { theme } = useContext(Context);
-
-  console.log(data);
 
   return (
     <S.Container
@@ -54,20 +38,20 @@ const SheetView = () => {
     //   }
     >
       <S.Header
-        theme={theme}
+        theme={viewController.theme}
         style={{
           marginRight: 16,
         }}
       >
-        <S.Title theme={theme}>
+        <S.Title theme={viewController.theme}>
           <Link
             style={{
-              color: theme.text,
+              color: viewController.theme.text,
             }}
             to="/"
           >
-            <MusicNote className="note-icon" color={theme.text} size={20} />
-            <label> {data?.name}</label>
+            <MusicNote className="note-icon" color={viewController.theme.text} size={20} />
+            <label> {viewController.data?.name}</label>
           </Link>
         </S.Title>
         {/* <Save
@@ -79,7 +63,7 @@ const SheetView = () => {
           /> */}
         <Link to="/sheets">
           <FolderOpen
-            color={theme.text}
+            color={viewController.theme.text}
             size={24}
             style={{
               marginRight: 8,
@@ -97,11 +81,11 @@ const SheetView = () => {
         <ThemeToggle />
       </S.Header>
 
-      <S.InputContainer theme={theme}>
+      <S.InputContainer theme={viewController.theme}>
         <>
-          {data && data.sheets.length > 0 ? (
+          {viewController.data && viewController.data.sheets.length > 0 ? (
             <S.VerseContainer>
-              {data?.sheets.map((verse) => {
+              {viewController.data?.sheets.map((verse) => {
                 return (
                   <>
                     {editMode && editVerseTitle === verse.id ? (
@@ -120,7 +104,7 @@ const SheetView = () => {
                     )}
                     <S.Verse
                       key={verse.id}
-                      theme={theme}
+                      theme={viewController.theme}
                       className="sheetBlock"
                     >
                       {/* {editMode && editVerseTitle === verse.id ? (
@@ -142,7 +126,7 @@ const SheetView = () => {
                           onClick={() => {
                             editMode ? setEditMode(false) : null;
                           }}
-                          theme={theme}
+                          theme={viewController.theme}
                         >
                           {inp.note}
                           <label>
@@ -176,7 +160,7 @@ const SheetView = () => {
                 style={{
                   fontSize: 24,
                   fontWeight: 300,
-                  color: theme.text,
+                  color: viewController.theme.text,
                 }}
               >
                 Sem registros

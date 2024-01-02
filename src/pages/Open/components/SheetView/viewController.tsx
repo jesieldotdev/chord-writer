@@ -1,28 +1,30 @@
-import { useEffect, useState } from "react";
-import {VerseProps} from '../../../../types'
+import { useContext, useEffect, useState } from "react";
+import { Music, VerseProps } from "../../../../types";
+import { getMusicById } from "../../../../api/services";
+import { Context } from "../../../../global/Context";
+import { useParams } from "react-router-dom";
 
-interface SheetViewControllerProps{
-    verseId: string
+interface SheetViewControllerProps {
+  verseId: string;
 }
 
-const SheetViewController = ({verseId}:any) => {
-    const [data, setData] = useState<VerseProps[]>([])
+const SheetViewController = () => {
+  const [data, setData] = useState<Music>();
+  const {id} = useParams()
 
-    console.log(verseId)
+  console.log(id)
 
-    useEffect(() => {
-        fetch('http://ec2-18-231-159-123.sa-east-1.compute.amazonaws.com:5000/')
-          .then((response) => {
-            if (!response.ok) throw new Error("Erro na requisição");
-            return response.json();
-          })
-          .then((data) => setData(data))
-          .catch((error) => console.log(error));
-       }, []);
+  useEffect(() => {
+    getMusicById(id).then((data) => setData(data));
+  }, []);
+  const { theme } = useContext(Context);
 
-    return {
-     data   
-    }
-}
+  console.log(data);
 
-export default SheetViewController
+  return {
+    data,
+    theme,
+  };
+};
+
+export default SheetViewController;
