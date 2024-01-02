@@ -1,4 +1,4 @@
-import { VerseProps } from "../types";
+import { Music, PostDataProps, VerseProps } from "../types";
 
 export function fetchMusicsApi() {
   return fetch(
@@ -25,12 +25,17 @@ export function deleteMusicApi(musicId: string) {
     .catch((error) => console.log(error));
 }
 
-export function postMusicApi(title: string, verses: VerseProps[]) {
-  const postData = {
-    name: title,
-    sheets: verses,
-  };
-
+export function getMusicById(id: string) {
+  return fetch(
+    `http://ec2-18-231-159-123.sa-east-1.compute.amazonaws.com:5000/music/${id}`
+  )
+    .then((response) => {
+      if (!response.ok) throw new Error("Erro na requisição");
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+}
+export function postMusicApi(postData: PostDataProps) {
   return fetch(
     "http://ec2-18-231-159-123.sa-east-1.compute.amazonaws.com:5000/music",
     {
@@ -40,17 +45,6 @@ export function postMusicApi(title: string, verses: VerseProps[]) {
       },
       body: JSON.stringify(postData),
     }
-  )
-    .then((response) => {
-      if (!response.ok) throw new Error("Erro na requisição");
-      return response.json();
-    })
-    .catch((error) => console.log(error));
-}
-
-export function getMusicById(id: string) {
-  return fetch(
-    `http://ec2-18-231-159-123.sa-east-1.compute.amazonaws.com:5000/music/${id}`
   )
     .then((response) => {
       if (!response.ok) throw new Error("Erro na requisição");

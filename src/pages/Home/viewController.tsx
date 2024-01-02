@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { NewTitle, SheetProps, VerseProps } from "../../types";
+import { Music, NewTitle, SheetProps, VerseProps } from "../../types";
 import changePos from "../../utils/changePositionOfString";
 import { v4 as uuidv4 } from "uuid";
 import { enqueueSnackbar } from "notistack";
-import { postMusicApi } from "../../api/services";
+import { fetchMusicsApi, postMusicApi } from "../../api/services";
 
 const HomeViewController = () => {
   const notes = ["C", "D", "E", "F", "G", "A", "B"] as string[];
@@ -113,19 +113,32 @@ const HomeViewController = () => {
   }
 
   function postMusic() {
-    console.log(title);
-    console.log(verses);
     const postData = {
       name: title,
       sheets: verses,
     };
 
-    postMusicApi(title, verses)
-      .then((res) => {
-        console.log(res);
-        enqueueSnackbar("Salvo com sucesso");
-      })
-      .catch((error) => enqueueSnackbar("Erro: ", error));
+    return fetchMusicsApi().then((res: Music[]) => {
+      let counter = 1;
+      let newTitle = title;
+
+      while (res.some((sheet) => sheet.name === newTitle)) {
+        newTitle = `${title} ${counter}`;
+        counter += 1;
+      }
+
+      postData.name = newTitle;
+
+      postMusicApi(postData)
+        .then((res) => {
+          console.log(res);
+          enqueueSnackbar("Salvo com sucesso");
+        })
+        .catch((error) => {
+          enqueueSnackbar(`Erro: ${error.message}`);
+          console.log(error);
+        });
+    });
   }
 
   return {

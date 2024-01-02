@@ -20,3 +20,8 @@ interface Music{
   name: string,
   sheets: VerseProps[],
 }
+
+interface PostDataProps{
+  name: string
+  sheets: VerseProps[]
+}
