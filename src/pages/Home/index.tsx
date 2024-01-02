@@ -71,14 +71,14 @@ const Home = () => {
                 }}
               />
             </Link>
-            <KeyboardHide
+            {/* <KeyboardHide
               onClick={() => viewController.setShowKeyboard(false)}
               color={theme.text}
               size={24}
               style={{
                 marginRight: 8,
               }}
-            />
+            /> */}
             <ThemeToggle />
           </>
         ) : null}
@@ -94,7 +94,7 @@ const Home = () => {
 
         <ChordInput
           show={viewController.showKeyboard}
-          setShow={(e) => viewController.setShowKeyboard(e)}
+          setShow={viewController.setShowKeyboard}
           addChord={viewController.addChord}
           removeChord={viewController.removeChord}
           newLine={viewController.newLine}

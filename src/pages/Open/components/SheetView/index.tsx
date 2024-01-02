@@ -26,8 +26,7 @@ const SheetView = () => {
     setEditVerseTitle(verseId);
   }
 
-  const viewController = SheetViewController()
-
+  const viewController = SheetViewController();
 
   return (
     <S.Container
@@ -50,7 +49,11 @@ const SheetView = () => {
             }}
             to="/"
           >
-            <MusicNote className="note-icon" color={viewController.theme.text} size={20} />
+            <MusicNote
+              className="note-icon"
+              color={viewController.theme.text}
+              size={20}
+            />
             <label> {viewController.data?.name}</label>
           </Link>
         </S.Title>
@@ -90,12 +93,14 @@ const SheetView = () => {
                   <>
                     {editMode && editVerseTitle === verse.id ? (
                       <EditTitle
+                        key={verse._id}
                         editTitleFn={EditTitle}
                         setShow={setEditMode}
                         value={verse}
                       />
                     ) : (
                       <label
+                        key={verse._id}
                         onClick={() => editVerse(verse.id)}
                         className="verse-title"
                       >
@@ -103,7 +108,7 @@ const SheetView = () => {
                       </label>
                     )}
                     <S.Verse
-                      key={verse.id}
+                      key={verse._id}
                       theme={viewController.theme}
                       className="sheetBlock"
                     >
@@ -123,6 +128,7 @@ const SheetView = () => {
                   )} */}
                       {verse.chords?.map((inp) => (
                         <S.ChordItem
+                        key={inp._id}
                           onClick={() => {
                             editMode ? setEditMode(false) : null;
                           }}

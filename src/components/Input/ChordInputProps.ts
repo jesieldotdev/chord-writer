@@ -8,4 +8,5 @@ export interface ChordInputProps {
   show: boolean;
   setShow: React.Dispatch<SetStateAction<boolean>>;
   newLine: () => any;
+  
 }

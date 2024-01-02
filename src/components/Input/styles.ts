@@ -35,7 +35,7 @@ export const IntervalInsert = styled.div`
 
 export const Button = styled.button<Theme>`
   padding: 16px;
-  font-size: 16px;
+  font-size: 20px;
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
@@ -50,7 +50,7 @@ export const Button = styled.button<Theme>`
   /* width: max-content; */
 
   height: 64px;
-  font-weight: 800;
+  font-weight: 200;
   align-items: center;
   display: flex;
   text-align: center;

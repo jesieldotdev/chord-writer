@@ -30,3 +30,22 @@ export const IconLeft = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const EmptyComponent = styled.div`
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => props.theme.keyboardBackGround};
+  padding: 8px;
+  gap: 4px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  height: 80px;
+  margin: auto;
+  margin-top: 78px;
+  font-size: 16px;
+  font-weight: 200;
+`;

@@ -1,7 +1,11 @@
 import * as S from "./styles";
 import { Context } from "../../global/Context";
 import { useContext } from "react";
-import { Backspace, KeyboardReturn } from "@styled-icons/material-rounded";
+import {
+  Backspace,
+  KeyboardHide,
+  KeyboardReturn,
+} from "@styled-icons/material-rounded";
 import { ChordInputProps } from "./ChordInputProps";
 
 const ChordInput = ({
@@ -48,7 +52,15 @@ const ChordInput = ({
               {note}
             </S.Button>
           ))}
-      <S.Button
+          <S.Button theme={theme}>
+            <KeyboardHide
+              onClick={() => setShow(!show)}
+              // color={theme.text}
+              color={theme.text}
+              size={24}
+            />
+          </S.Button>
+          <S.Button
             style={{
               marginLeft: "auto",
             }}
@@ -59,16 +71,17 @@ const ChordInput = ({
             <Backspace color={theme.text} size={24} />
           </S.Button>
           <S.Button
-            style={{
-              // marginRight: "auto",
-            }}
+            style={
+              {
+                // marginRight: "auto",
+              }
+            }
             // className="delete"
             theme={theme}
             onClick={() => newLine()}
           >
             <KeyboardReturn color={theme.text} size={24} />
           </S.Button>
-    
 
           {/* <S.Button
             className="delete"
