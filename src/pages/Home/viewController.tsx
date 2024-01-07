@@ -33,7 +33,7 @@ const HomeViewController = () => {
   const [sheet, setSheet] = useState<SheetProps[]>([]);
   const [verses, setVerses] = useState<any>([]);
   const [data, setData] = useState<any>([]);
-  const [showKeyboard, setShowKeyboard] = useState<boolean>(false);
+  const [showKeyboard, setShowKeyboard] = useState<boolean>(true);
 
   function addChord(inp: string, type: "note" | "interval") {
     if (type === "note") {
