@@ -4,11 +4,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: end;
-  margin-top: auto;
-
-  /* height: 100%; */
-  height: calc(100vh - 120px);
+  justify-content: top;
+  /* margin-bottom: auto; */
+ 
+  /* height: calc(100vh - 120px); */
 
   ::-webkit-scrollbar {
     display: none;
@@ -154,15 +153,19 @@ export const ChordItem = styled.div`
 `;
 
 export const VerseContainer = styled.div`
-  width: 100%;
+  width: 90vw;
   /* background-color: red; */
-  height: 260px;
   overflow-y: scroll;
   margin-top: 8px;
   .verse-title {
     font-size: 16px;
     font-weight: 200;
   }
+
+   margin-top: 64px;
+
+  /* height: 100vh; */
+  /* background-color: red; */
 `;
 
 export const EmptyComponent = styled.div`

@@ -77,6 +77,12 @@ export default function OpenView() {
           Sem cifras por aqui, clique no icone de + para criar uma.
         </S.EmptyComponent>
       ) : null}
+
+      {viewController?.data.length > 0 ? (
+        <S.EmptyComponent theme={theme}>
+          Clique no icone de + para escrever uma cifra.
+        </S.EmptyComponent>
+      ) : null}
     </S.Container>
   );
 }

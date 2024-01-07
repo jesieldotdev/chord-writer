@@ -109,13 +109,13 @@ const SheetView = () => {
       <S.InputContainer theme={viewController.theme}>
         <>
           {viewController.loading ? (
-            <>
+            <S.VerseContainer>
               <p>Verse</p>
               <div
                 style={{
                   display: "flex",
                   gap: 8,
-                  marginBottom: 64
+                  marginTop: 120
                 }}
               >
                 {[...Array(7).keys()].map((i) => (
@@ -131,21 +131,21 @@ const SheetView = () => {
                   />
                 ))}
               </div>
-            </>
+            </S.VerseContainer>
           ) : null}
           {viewController.data && viewController.data.sheets.length > 0 ? (
             <S.VerseContainer>
               {viewController.data?.sheets.map((verse) => {
                 return (
                   <>
-                    {editMode && editVerseTitle === verse.id ? (
+                    {/* {editMode && editVerseTitle === verse.id ? (
                       <EditTitle
                         key={verse._id}
                         editTitleFn={EditTitle}
                         setShow={setEditMode}
                         value={verse}
                       />
-                    ) : (
+                    ) : ( */}
                       <label
                         key={verse._id}
                         onClick={() => editVerse(verse.id)}
@@ -153,7 +153,7 @@ const SheetView = () => {
                       >
                         {verse.name}
                       </label>
-                    )}
+                    {/* )} */}
                     <S.Verse
                       key={verse._id}
                       theme={viewController.theme}
@@ -222,6 +222,8 @@ const SheetView = () => {
           ) : null}
         </>
 
+        
+
         {/* <ChordSheet
           editTitleFn={viewController.editTitle}
           verses={data?.sheets}
@@ -237,7 +239,10 @@ const SheetView = () => {
           notes={viewController.notes}
           intervals={viewController.intervals}
         /> */}
+
+        
       </S.InputContainer>
+      
     </S.Container>
   );
 };
