@@ -7,6 +7,8 @@ import React from "react";
 import { Context } from "../../global/Context";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import DropDownMenu from "../../components/Dropdown";
+import { CiSquarePlus } from "react-icons/ci";
 
 export default function OpenView() {
   const viewController = OpenViewController();
@@ -26,12 +28,22 @@ export default function OpenView() {
         }}
       >
         <label> Cifras</label>
-        <Link to="/">
-          <Plus style={{
-            marginTop: -4
-          }} size={32} />
+        <Link
+          style={{
+            marginLeft: 'auto'
+          }}
+          to="/"
+        >
+          <CiSquarePlus
+            style={{
+              marginRight: 8,
+            }}
+            size={38}
+          />
         </Link>
+        <DropDownMenu />
       </div>
+
       {viewController.loading ? (
         <div>
           {/* <Skeleton circle width={100} height={100} containerClassName="avatar-skeleton" /> */}
@@ -41,7 +53,7 @@ export default function OpenView() {
             // highlightColor={theme.backgroundFocus}
             style={{
               marginBottom: 8,
-              marginLeft: 8,
+              marginLeft: 16,
               marginRight: 32,
             }}
             count={3}

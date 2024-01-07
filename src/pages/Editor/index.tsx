@@ -10,14 +10,14 @@ import { KeyboardHide } from "@styled-icons/material-rounded";
 import { FolderOpen, Save } from "styled-icons/boxicons-solid";
 import { Link } from "react-router-dom";
 import TitleEdit from "../../components/TitleEdit";
+import { CiFolderOn, CiFloppyDisk } from "react-icons/ci";
+import DropDownMenu from "../../components/Dropdown";
+
+
 
 const Editor = () => {
   const viewController = HomeViewController();
   const { theme } = useContext(Context);
-
-  
-
-
 
   return (
     <S.Container
@@ -58,7 +58,7 @@ const Editor = () => {
 
         {!viewController.editMode ? (
           <>
-            <Save
+            <CiFloppyDisk
               onClick={() => viewController.postMusic()}
               color={theme.text}
               size={24}
@@ -67,11 +67,12 @@ const Editor = () => {
               }}
             />
             <Link to="/sheets">
-              <FolderOpen
+              <CiFolderOn
                 color={theme.text}
                 size={24}
                 style={{
                   marginRight: 8,
+                  marginTop: 8
                 }}
               />
             </Link>
@@ -84,6 +85,10 @@ const Editor = () => {
               }}
             /> */}
             <ThemeToggle />
+            <DropDownMenu style={{
+              marginLeft: 8,
+              marginRight: -8,
+            }}/>
           </>
         ) : null}
       </S.Header>

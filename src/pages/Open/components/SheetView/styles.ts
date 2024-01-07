@@ -49,7 +49,8 @@ export const Header = styled.div`
   padding-top: 8px;
   background-color: ${(props) => props.theme.body};
   box-shadow: 0px 10px 70px -10px ${(props) => props.theme.boxShadowColor};
-  margin-top: 0px;
+  margin-top: -4px;
+  margin-bottom: 4px;
 
   .note-icon {
     /* display: flex; */
@@ -75,7 +76,7 @@ export const Label = styled.label`
   text-align: center;
   /* width: 120px; */
   display: flex;
-  margin-top: 8px;
+  margin-top: -8px;
   margin-bottom: 8px;
 `;
 
