@@ -18,6 +18,8 @@ import { FileEmpty } from "styled-icons/icomoon";
 import { getMusicById } from "../../../../api/services";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { CiFolderOn, CiMusicNote1 } from "react-icons/ci";
+
 
 const SheetView = () => {
   const [editVerseTitle, setEditVerseTitle] = React.useState<string>();
@@ -60,12 +62,16 @@ const SheetView = () => {
             }}
             to="/"
           >
-            <MusicNote
+            <CiMusicNote1
               className="note-icon"
               color={viewController.theme.text}
-              size={20}
+              size={26}
+              style={{
+                marginTop: 8
+              }}
             />
-            <label> {viewController.data?.name}</label>
+            <label style={{
+            }}> {viewController.data?.name}</label>
             {viewController.loading ? (
               <Skeleton
                 baseColor={theme.keyboardBackGround}
@@ -87,13 +93,17 @@ const SheetView = () => {
             }}
           /> */}
         <Link to="/sheets">
-          <FolderOpen
+          <CiFolderOn size={24} color={theme.text} style={{
+            marginRight: 8,
+            marginTop: 8
+          }} />
+          {/* <FolderOpen
             color={viewController.theme.text}
             size={24}
             style={{
               marginRight: 8,
             }}
-          />
+          /> */}
         </Link>
         {/* <KeyboardHide
           onClick={() => viewController.setShowKeyboard(false)}
