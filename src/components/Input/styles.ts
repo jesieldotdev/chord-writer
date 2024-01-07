@@ -14,7 +14,6 @@ export const SheetInsert = styled.div`
   justify-content: center;
   /* margin-left: 16px; */
   margin-bottom: 0px;
-  
 `;
 export const IntervalInsert = styled.div`
   /* margin-top: auto; */
@@ -30,7 +29,7 @@ export const IntervalInsert = styled.div`
   flex-wrap: wrap;
   /* justify-content: space-between; */
   display: flex;
-  justify-content: center;
+   justify-content: space-between;
 `;
 
 export const Button = styled.button<Theme>`
@@ -89,10 +88,14 @@ export const Container = styled.div`
   max-width: 100%;
   /* overflow-y: hidden; */
   background-color: ${(props) => props.theme.keyboardBackGround};
-padding: 0px;
-border-radius: 8px;
-margin-bottom: -52px;
-padding-top: 8px;
-/* background-color: red; */
-/* display: flex; */
+  padding: 0px;
+  border-radius: 8px;
+  margin-bottom: -64px;
+
+  /* padding-top: 8px; */
+  /* background-color: red; */
+  /* display: flex; */
+
+  max-width: 600px;
+  padding: 8px;
 `;

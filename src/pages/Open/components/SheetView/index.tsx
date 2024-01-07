@@ -9,7 +9,7 @@ import { Context } from "../../../../global/Context";
 import { KeyboardHide } from "@styled-icons/material-rounded";
 import { FolderOpen, Save } from "styled-icons/boxicons-solid";
 import { Link, useParams } from "react-router-dom";
-import HomeViewController from "../../../Home/viewController";
+import HomeViewController from "../../../Editor/viewController";
 import SheetViewController from "./viewController";
 import { Music, VerseProps } from "../../../../types";
 import React from "react";

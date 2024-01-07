@@ -11,9 +11,13 @@ import { FolderOpen, Save } from "styled-icons/boxicons-solid";
 import { Link } from "react-router-dom";
 import TitleEdit from "../../components/TitleEdit";
 
-const Home = () => {
+const Editor = () => {
   const viewController = HomeViewController();
   const { theme } = useContext(Context);
+
+  
+
+
 
   return (
     <S.Container
@@ -106,4 +110,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Editor;

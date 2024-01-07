@@ -17,7 +17,6 @@ const ChordInput = ({
   setShow,
   newLine,
 }: ChordInputProps) => {
-  console.log(show);
   const { theme } = useContext(Context);
   if (show) {
     return (
@@ -35,16 +34,6 @@ const ChordInput = ({
               {int}
             </S.ButtonSmall>
           ))}
-          {/* <S.Button
-          style={{
-            marginLeft: 'auto'
-          }}
-            className="delete"
-            theme={theme}
-            onClick={() => removeChord()}
-          >
-            🗑️
-          </S.Button> */}
         </S.IntervalInsert>
         <S.SheetInsert>
           {notes.map((note) => (

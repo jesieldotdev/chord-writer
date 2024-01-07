@@ -12,7 +12,7 @@ export const Item = styled.div`
   gap: 4px;
   margin-bottom: 8px;
   border-radius: 8px;
-  margin-left: 8px;
+  /* margin-left: 8px; */
   margin-right: 16px;
 
   .title {

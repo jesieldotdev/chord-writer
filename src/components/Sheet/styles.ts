@@ -16,6 +16,7 @@ export const Label = styled.label`
   display: flex;
   margin-top: 8px;
   margin-bottom: 8px;
+  margin-left: 16px;
 `;
 
 export const BlockSheet = styled.div`

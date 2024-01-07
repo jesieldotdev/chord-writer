@@ -27,7 +27,9 @@ export default function OpenView() {
       >
         <label> Cifras</label>
         <Link to="/">
-          <Plus style={{}} size={32} />
+          <Plus style={{
+            marginTop: -4
+          }} size={32} />
         </Link>
       </div>
       {viewController.loading ? (
@@ -39,6 +41,8 @@ export default function OpenView() {
             // highlightColor={theme.backgroundFocus}
             style={{
               marginBottom: 8,
+              marginLeft: 8,
+              marginRight: 32,
             }}
             count={3}
             containerClassName="flex-1"
