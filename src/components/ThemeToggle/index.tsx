@@ -16,7 +16,7 @@ const ThemeToggle: React.FC = () => {
           padding: 0,
         }}
       > */}
-        {isDark ? (
+        {!isDark ? (
           <DarkMode
             size={24}
             onClick={toggleTheme}

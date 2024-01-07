@@ -4,8 +4,10 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 const API_LOCAL = import.meta.env.VITE_API_LOCAL_URL;
 const API_EXTERNAL = import.meta.env.VITE_API_EXTERNAL_URL;
 
+const API_USE = API_EXTERNAL
+
 export function fetchMusicsApi() {
-  return fetch(API_EXTERNAL, {
+  return fetch(API_USE, {
     headers: {
       "x-api-key": API_KEY,
     },
@@ -18,7 +20,7 @@ export function fetchMusicsApi() {
 }
 
 export function deleteMusicApi(musicId: string) {
-  return fetch(`${API_EXTERNAL}/music/${musicId}`, {
+  return fetch(`${API_USE}/music/${musicId}`, {
     method: "DELETE",
     headers: {
       "x-api-key": API_KEY,
@@ -32,7 +34,8 @@ export function deleteMusicApi(musicId: string) {
 }
 
 export function getMusicById(id: string) {
-  return fetch(`${API_EXTERNAL}/music/${id}`, {
+  return fetch(`${API_USE}/music/${id}`, {
+    method: "GET",
     headers: {
       "x-api-key": API_KEY,
     },
@@ -44,7 +47,7 @@ export function getMusicById(id: string) {
     .catch((error) => console.log(error));
 }
 export function postMusicApi(postData: PostDataProps) {
-  return fetch(`${API_EXTERNAL}/music`, {
+  return fetch(`${API_USE}/music`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

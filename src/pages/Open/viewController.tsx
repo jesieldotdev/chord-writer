@@ -5,9 +5,19 @@ import { deleteMusicApi, fetchMusicsApi } from "../../api/services";
 
 export default function OpenViewController() {
   const [data, setData] = useState<Music[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    fetchMusicsApi().then((data) => setData(data));
+    setLoading(true);
+
+    fetchMusicsApi()
+      .then((data) => setData(data))
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   function deleteMusic(music: Music) {
@@ -21,5 +31,6 @@ export default function OpenViewController() {
   return {
     data,
     deleteMusic,
+    loading,
   };
 }
