@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import SwipeToDelete from "../../components/Swippe";
 import React from "react";
 import { Context } from "../../global/Context";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function OpenView() {
   const viewController = OpenViewController();
@@ -28,6 +30,22 @@ export default function OpenView() {
           <Plus style={{}} size={32} />
         </Link>
       </div>
+      {viewController.loading ? (
+        <div>
+          {/* <Skeleton circle width={100} height={100} containerClassName="avatar-skeleton" /> */}
+          <Skeleton
+            baseColor={theme.keyboardBackGround}
+            borderRadius={8}
+            // highlightColor={theme.backgroundFocus}
+            style={{
+              marginBottom: 8,
+            }}
+            count={3}
+            containerClassName="flex-1"
+            height={56}
+          />
+        </div>
+      ) : null}
 
       {viewController?.data.length > 0 && viewController?.data?.length > 0 ? (
         viewController?.data?.map((music) => {
@@ -54,9 +72,11 @@ export default function OpenView() {
             </SwipeToDelete>
           );
         })
-      ) : (
-        <S.EmptyComponent theme={theme}>Sem cifras por aqui, clique no icone de + para criar uma.</S.EmptyComponent>
-      )}
+      ) : !viewController.loading ? (
+        <S.EmptyComponent theme={theme}>
+          Sem cifras por aqui, clique no icone de + para criar uma.
+        </S.EmptyComponent>
+      ) : null}
     </S.Container>
   );
 }

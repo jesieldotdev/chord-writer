@@ -10,12 +10,22 @@ interface SheetViewControllerProps {
 
 const SheetViewController = () => {
   const [data, setData] = useState<Music>();
-  const {id} = useParams()
+  const { id } = useParams();
+  const [loading, setLoading] = useState<boolean>(false);
 
-  console.log(id)
+  console.log(id);
 
   useEffect(() => {
-    getMusicById(id).then((data) => setData(data));
+    setLoading(true);
+
+    getMusicById(id)
+      .then((data) => setData(data))
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
   const { theme } = useContext(Context);
 
@@ -24,6 +34,7 @@ const SheetViewController = () => {
   return {
     data,
     theme,
+    loading
   };
 };
 
