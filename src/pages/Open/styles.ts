@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+label{
+  font-weight: 600;
+  font-size: 18px;
+  margin-left: 8px;
+}
 
 `;
 export const Item = styled.div`
@@ -14,6 +19,7 @@ export const Item = styled.div`
   border-radius: 8px;
   /* margin-left: 8px; */
   margin-right: 16px;
+  margin-left: 16px;
 
   .title {
     font-weight: 600;

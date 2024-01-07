@@ -30,12 +30,15 @@ const SwipeToDelete = ({
     <SwipeableList>
       {/* {data.map((item) => ( */}
       <SwipeableListItem
+      
+      
         swipeLeft={{
           content: (
             <div
               style={{
                 marginLeft: 8,
                 marginRight: 8,
+                
               }}
             >
               Excluír
@@ -61,7 +64,6 @@ const SwipeToDelete = ({
           style={{
             background: theme.body,
             width: "100%",
-            marginLeft: 8,
           }}
         >
           {children}
