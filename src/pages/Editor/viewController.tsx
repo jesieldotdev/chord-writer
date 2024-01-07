@@ -4,6 +4,7 @@ import changePos from "../../utils/changePositionOfString";
 import { v4 as uuidv4 } from "uuid";
 import { enqueueSnackbar } from "notistack";
 import { fetchMusicsApi, postMusicApi } from "../../api/services";
+import Vibrate from "../../utils/vibrate";
 
 const EditorViewController = () => {
   const notes = ["C", "D", "E", "F", "G", "A", "B"] as string[];
@@ -36,6 +37,7 @@ const EditorViewController = () => {
   const [showKeyboard, setShowKeyboard] = useState<boolean>(true);
 
   function addChord(inp: string, type: "note" | "interval") {
+    Vibrate()
     if (type === "note") {
       const data = {
         note: inp,

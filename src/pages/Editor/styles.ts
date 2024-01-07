@@ -68,11 +68,11 @@ export const Header = styled.div`
   padding-top: 8px;
   background-color: ${(props) => props.theme.body};
   box-shadow: 0px 10px 70px -10px ${(props) => props.theme.boxShadowColor};
-  margin-top: 0px;
 
   .note-icon {
     /* display: flex; */
     /* align-items: center; */
+    margin-top: 4px;
   }
 `;
 

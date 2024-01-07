@@ -15,6 +15,10 @@ const Editor = () => {
   const viewController = HomeViewController();
   const { theme } = useContext(Context);
 
+  
+
+
+
   return (
     <S.Container
       onClick={() =>
