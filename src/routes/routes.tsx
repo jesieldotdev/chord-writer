@@ -1,4 +1,4 @@
-import Home from "../pages/Home/index";
+import Home from "../pages/Editor/index";
 import { HashRouter,BrowserRouter, Routes, Route } from "react-router-dom";
 import OpenView from "../pages/Open";
 import SheetView from "../pages/Open/components/SheetView";

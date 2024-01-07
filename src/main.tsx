@@ -6,7 +6,7 @@ import { SnackbarProvider } from "notistack";
 import Provider from "./global/Context.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import OpenView from "./pages/Open/index.tsx";
-import Home from "./pages/Home/index.tsx";
+import Home from "./pages/Editor/index.tsx";
 import SheetView from "./pages/Open/components/SheetView/index.tsx";
 
 const router = createBrowserRouter([
