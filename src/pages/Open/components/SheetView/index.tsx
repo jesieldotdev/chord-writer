@@ -222,6 +222,8 @@ const SheetView = () => {
           ) : null}
         </>
 
+        
+
         {/* <ChordSheet
           editTitleFn={viewController.editTitle}
           verses={data?.sheets}
@@ -237,7 +239,10 @@ const SheetView = () => {
           notes={viewController.notes}
           intervals={viewController.intervals}
         /> */}
+
+        
       </S.InputContainer>
+      
     </S.Container>
   );
 };

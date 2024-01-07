@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+
+`;
 export const Item = styled.div`
   display: flex;
   flex-direction: row;
@@ -10,6 +12,8 @@ export const Item = styled.div`
   gap: 4px;
   margin-bottom: 8px;
   border-radius: 8px;
+  margin-left: 8px;
+  margin-right: 16px;
 
   .title {
     font-weight: 600;
