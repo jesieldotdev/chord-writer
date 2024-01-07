@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { enqueueSnackbar } from "notistack";
 import { fetchMusicsApi, postMusicApi } from "../../api/services";
 
-const HomeViewController = () => {
+const EditorViewController = () => {
   const notes = ["C", "D", "E", "F", "G", "A", "B"] as string[];
 
   const intervals = [
@@ -161,4 +161,4 @@ const HomeViewController = () => {
   };
 };
 
-export default HomeViewController;
+export default EditorViewController;
