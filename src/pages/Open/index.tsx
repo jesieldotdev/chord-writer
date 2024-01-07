@@ -31,17 +31,20 @@ export default function OpenView() {
         </Link>
       </div>
       {viewController.loading ? (
-        <Skeleton
-          baseColor={theme.keyboardBackGround}
-          borderRadius={8}
-          highlightColor={theme.backgroundFocus}
-          style={{
-            marginBottom: 8,
-          }}
-          count={3}
-          containerClassName="flex-1"
-          height={56}
-        />
+        <div>
+          {/* <Skeleton circle width={100} height={100} containerClassName="avatar-skeleton" /> */}
+          <Skeleton
+            baseColor={theme.keyboardBackGround}
+            borderRadius={8}
+            // highlightColor={theme.backgroundFocus}
+            style={{
+              marginBottom: 8,
+            }}
+            count={3}
+            containerClassName="flex-1"
+            height={56}
+          />
+        </div>
       ) : null}
 
       {viewController?.data.length > 0 && viewController?.data?.length > 0 ? (

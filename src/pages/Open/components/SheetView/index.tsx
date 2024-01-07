@@ -16,17 +16,28 @@ import React from "react";
 import EditTitle from "../../../../components/Sheet/Components/EditTitle";
 import { FileEmpty } from "styled-icons/icomoon";
 import { getMusicById } from "../../../../api/services";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const SheetView = () => {
   const [editVerseTitle, setEditVerseTitle] = React.useState<string>();
   const [editMode, setEditMode] = React.useState<boolean>(false);
 
+  const { theme } = React.useContext(Context);
+
+  const viewController = SheetViewController();
+
+  React.useEffect(() => {
+    document.title =
+      viewController.data?.name !== undefined
+        ? viewController.data?.name
+        : "Chord Writter";
+  }, [viewController.data?.name]);
+
   function editVerse(verseId: string) {
     setEditMode(true);
     setEditVerseTitle(verseId);
   }
-
-  const viewController = SheetViewController();
 
   return (
     <S.Container
@@ -55,6 +66,17 @@ const SheetView = () => {
               size={20}
             />
             <label> {viewController.data?.name}</label>
+            {viewController.loading ? (
+              <Skeleton
+                baseColor={theme.keyboardBackGround}
+                borderRadius={8}
+                highlightColor={theme.backgroundFocus}
+                style={{}}
+                containerClassName="flex-1"
+                height={28}
+                width={200}
+              />
+            ) : null}
           </Link>
         </S.Title>
         {/* <Save
@@ -86,6 +108,31 @@ const SheetView = () => {
 
       <S.InputContainer theme={viewController.theme}>
         <>
+          {viewController.loading ? (
+            <>
+              <p>Verse</p>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 8,
+                  marginBottom: 64
+                }}
+              >
+                {[...Array(7).keys()].map((i) => (
+                  <Skeleton
+                    baseColor={theme.keyboardBackGround}
+                    borderRadius={8}
+                    highlightColor={theme.backgroundFocus}
+                    style={{}}
+                    count={3}
+                    containerClassName="flex-1"
+                    height={32}
+                    width={44}
+                  />
+                ))}
+              </div>
+            </>
+          ) : null}
           {viewController.data && viewController.data.sheets.length > 0 ? (
             <S.VerseContainer>
               {viewController.data?.sheets.map((verse) => {
@@ -128,7 +175,7 @@ const SheetView = () => {
                   )} */}
                       {verse.chords?.map((inp) => (
                         <S.ChordItem
-                        key={inp._id}
+                          key={inp._id}
                           onClick={() => {
                             editMode ? setEditMode(false) : null;
                           }}
@@ -154,7 +201,7 @@ const SheetView = () => {
                 );
               })}
             </S.VerseContainer>
-          ) : (
+          ) : !viewController.loading ? (
             <S.EmptyComponent>
               <FileEmpty
                 style={{
@@ -172,7 +219,7 @@ const SheetView = () => {
                 Sem registros
               </label>
             </S.EmptyComponent>
-          )}
+          ) : null}
         </>
 
         {/* <ChordSheet
