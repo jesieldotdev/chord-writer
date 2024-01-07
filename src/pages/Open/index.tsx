@@ -29,7 +29,7 @@ export default function OpenView() {
         </Link>
       </div>
 
-      {viewController?.data && viewController?.data?.length > 0 ? (
+      {viewController?.data.length > 0 && viewController?.data?.length > 0 ? (
         viewController?.data?.map((music) => {
           return (
             <SwipeToDelete
