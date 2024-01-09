@@ -1,10 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 
+const FIREBASE_API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
+const FIREBASE_AUTH_DOMAIN = import.meta.env.VITE_FIREBASE_AUTH_DOMAIN;
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC14jmUKPT_QcEQ5rAHCKkE-Q_0sXAg2Zg",
-  authDomain: "chord-writter.firebaseapp.com",
+  apiKey: FIREBASE_API_KEY,
+  authDomain: FIREBASE_AUTH_DOMAIN,
   projectId: "chord-writter",
   storageBucket: "chord-writter.appspot.com",
   messagingSenderId: "2304916338",
