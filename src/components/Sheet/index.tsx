@@ -25,7 +25,7 @@ const ChordSheet = ({ chords, verses, editTitleFn, showKeyboard }: ChordInputPro
 
   return (
     <>
-      {verses.length > 0 ? (
+      {verses && verses.length > 0 ? (
         <S.VerseContainer>
           {verses.map((verse) => {
             return (
@@ -90,7 +90,7 @@ const ChordSheet = ({ chords, verses, editTitleFn, showKeyboard }: ChordInputPro
         </S.VerseContainer>
       ) : null}
 
-      {chords.length > 0 ? (
+      { chords && chords.length > 0 ? (
         <S.SheetWrapper>
           {chords?.map((inp) => (
             <S.BlockSheet theme={theme} key={inp.note} className="sheetBlock">
