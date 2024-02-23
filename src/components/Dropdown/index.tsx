@@ -13,11 +13,11 @@ import { Context } from "../../global/Context";
 import { Link } from "react-router-dom";
 import ThemeToggle from "../ThemeToggle";
 
-interface DropDownProps{
-  style?: React.CSSProperties
+interface DropDownProps {
+  style?: React.CSSProperties;
 }
 
-export const DropDownMenu = ({style}: DropDownProps) => {
+export const DropDownMenu = ({ style }: DropDownProps) => {
   const dropdownRef = React.useRef(null);
   const [isActive, setIsActive] = React.useState(false);
   const onClick = () => setIsActive(!isActive);
@@ -62,9 +62,11 @@ export const DropDownMenu = ({style}: DropDownProps) => {
             </a>
           </li> */}
           <li>
-            <AiOutlineProfile size={24} />
-            <a href="/messages" />
-            Conta
+
+            <Link to="/login">
+              <AiOutlineProfile size={24} />
+              Conta
+            </Link>
           </li>
         </div>
       </nav>

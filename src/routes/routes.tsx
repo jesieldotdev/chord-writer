@@ -1,20 +1,26 @@
-import Home from "../pages/Editor/index";
-import { HashRouter,BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
+import Editor from "../pages/Editor";
 import OpenView from "../pages/Open";
 import SheetView from "../pages/Open/components/SheetView";
+import Login from "../pages/Login";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Editor />,
+  },
+  {
+    path: "/sheets",
+    element: <OpenView />,
+  },
+  {
+    path:"/sheet/:id",
+    element: <SheetView />,
+  },
+  {
+    path:"/login",
+    element: <Login />
+  }
+]);
 
-const RoutesComp = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sheets" element={<OpenView />} />
-        <Route path="/sheet/:id" element={<SheetView />} />
-
-      </Routes>
-    </BrowserRouter>
-  );
-};
-
-export default RoutesComp
+export default router

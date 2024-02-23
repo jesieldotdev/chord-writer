@@ -63,7 +63,7 @@ export default function OpenView() {
         </div>
       ) : null}
 
-      {viewController?.data.length > 0 && viewController?.data?.length > 0 ? (
+      {viewController?.data && viewController?.data.length > 0 && viewController?.data?.length > 0 ? (
         viewController?.data?.map((music) => {
           return (
             <SwipeToDelete
@@ -79,8 +79,8 @@ export default function OpenView() {
                   <div className="content">
                     <label className="title">{music.name}</label>
                     <label className="subtitle">
-                      {music.sheets.length}{" "}
-                      {music.sheets.length > 1 ? "versos" : "verso"}
+                      {music?.sheets?.length}{" "}
+                      {music?.sheets?.length > 1 ? "versos" : "verso"}
                     </label>
                   </div>
                 </S.Item>
@@ -94,7 +94,7 @@ export default function OpenView() {
         </S.EmptyComponent>
       ) : null}
 
-      {viewController?.data.length > 0 ? (
+      {viewController?.data?.length > 0 ? (
         <S.EmptyComponent theme={theme}>
           Clique no icone de + para escrever uma cifra.
         </S.EmptyComponent>

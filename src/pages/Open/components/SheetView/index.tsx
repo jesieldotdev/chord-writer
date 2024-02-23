@@ -143,7 +143,7 @@ const SheetView = () => {
               </div>
             </S.VerseContainer>
           ) : null}
-          {viewController.data && viewController.data.sheets.length > 0 ? (
+          {viewController?.data && viewController.data.sheets.length > 0 ? (
             <S.VerseContainer>
               {viewController.data?.sheets.map((verse) => {
                 return (
@@ -196,7 +196,7 @@ const SheetView = () => {
                             {inp.intervals.map((n, index) => {
                               return (
                                 <>
-                                  {index !== 0 && inp.intervals.length > index
+                                  {index !== 0 && inp.intervals?.length > index
                                     ? "/"
                                     : null}
                                   {n}
