@@ -1,7 +1,6 @@
 import Dexie, { Table } from 'dexie';
 import { PostDataProps, Music } from '../types';
 
-// Definindo a estrutura do banco de dados
 class MusicDatabase extends Dexie {
   musics!: Table<Music, string>;
   sheets!: Table<{ music_id: string; verse_id: string; note: string; intervals: string }, string>;
@@ -19,16 +18,16 @@ class MusicDatabase extends Dexie {
 
 const db = new MusicDatabase();
 
-// Função para obter músicas
 export async function fetchMusicsApi(): Promise<Music[]> {
   const musics = await db.musics.toArray();
-  return musics.map(music => ({
-    ...music,
-    sheets: fetchSheetsByMusicId(music._id)
-  }));
+  return Promise.all(
+    musics.map(async music => ({
+      ...music,
+      sheets: await fetchSheetsByMusicId(music._id)
+    }))
+  );
 }
 
-// Função para deletar uma música
 export async function deleteMusicApi(musicId: string): Promise<{ message: string }> {
   await db.transaction('rw', db.musics, db.sheets, db.verses, async () => {
     await db.musics.delete(musicId);
@@ -38,16 +37,14 @@ export async function deleteMusicApi(musicId: string): Promise<{ message: string
   return { message: "Música deletada com sucesso" };
 }
 
-// Função para buscar música por ID
 export async function getMusicById(id: string): Promise<Music | undefined> {
   const music = await db.musics.get(id);
   if (music) {
-    return { ...music, sheets: fetchSheetsByMusicId(music._id) };
+    return { ...music, sheets: await fetchSheetsByMusicId(music._id) };
   }
   return undefined;
 }
 
-// Função para adicionar uma nova música
 export async function postMusicApi(postData: PostDataProps): Promise<Music> {
   const newId = Date.now().toString();
   await db.transaction('rw', db.musics, db.sheets, db.verses, async () => {
@@ -64,10 +61,10 @@ export async function postMusicApi(postData: PostDataProps): Promise<Music> {
       }
     }
   });
-  return { _id: newId, name: postData.name, sheets: postData.sheets };
+
+  return { _id: newId, name: postData.name, sheets: await fetchSheetsByMusicId(newId) };
 }
 
-// Função auxiliar para buscar acordes associados a uma música
 async function fetchSheetsByMusicId(musicId: string) {
   const verses = await db.verses.where({ music_id: musicId }).toArray();
   return Promise.all(
