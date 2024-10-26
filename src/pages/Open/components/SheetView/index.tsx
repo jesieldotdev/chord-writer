@@ -41,6 +41,7 @@ const SheetView = () => {
     setEditVerseTitle(verseId);
   }
 
+
   return (
     <S.Container
     //   onClick={() =>
@@ -147,7 +148,7 @@ const SheetView = () => {
             <S.VerseContainer>
               {viewController.data?.sheets.map((verse) => {
                 return (
-                  <>
+                  <div key={verse.id}>
                     {/* {editMode && editVerseTitle === verse.id ? (
                       <EditTitle
                         key={verse._id}
@@ -207,7 +208,7 @@ const SheetView = () => {
                         </S.ChordItem>
                       ))}
                     </S.Verse>
-                  </>
+                  </div>
                 );
               })}
             </S.VerseContainer>
