@@ -13,7 +13,24 @@ import TitleEdit from "../../components/TitleEdit";
 import { enqueueSnackbar } from "notistack";
 
 const Editor = () => {
-  const viewController = HomeViewController();
+  const {addChord,
+    editMode,
+    editTitle,intervals,
+    newLine,
+    notes,
+    options,
+    postMusic,
+    postMusicJson,
+    removeChord,
+    setEditMode,
+    setSheet,
+    setShowKeyboard,
+    setTitle,
+    sheet,
+    showKeyboard,
+    title,
+    verses
+  } = HomeViewController();
   const { theme } = useContext(Context);
   const [jsonInput, setJsonInput] = useState("");
 
@@ -26,7 +43,7 @@ const Editor = () => {
       console.log("JSON limpo:", cleanedJsonInput); // Exibir o JSON limpo
 
       const parsedData = JSON.parse(cleanedJsonInput);
-      viewController.postMusicJson(parsedData);
+      postMusicJson(parsedData);
     } catch (error) {
       console.error("Erro ao parsear o JSON:", error);
       enqueueSnackbar("Erro ao parsear o JSON. Verifique o formato.");
@@ -36,8 +53,8 @@ const Editor = () => {
   return (
     <S.Container
       onClick={() =>
-        !viewController.showKeyboard
-          ? viewController.setShowKeyboard(true)
+        !showKeyboard
+          ? setShowKeyboard(true)
           : null
       }
     >
@@ -56,23 +73,23 @@ const Editor = () => {
             color={theme.text}
             size={20}
           />
-          {!viewController.editMode ? (
-            <label onClick={() => viewController.setEditMode(true)}>
-              {viewController.title}
+          {!editMode ? (
+            <label onClick={() => setEditMode(true)}>
+              {title}
             </label>
           ) : (
             <TitleEdit
-              title={viewController.title}
-              setTitle={viewController.setTitle}
-              setShow={viewController.setEditMode}
+              title={title}
+              setTitle={setTitle}
+              setShow={setEditMode}
             />
           )}
         </S.Title>
 
-        {!viewController.editMode ? (
+        {!editMode ? (
           <>
             <CiFloppyDisk
-              onClick={() => viewController.postMusic()}
+              onClick={() => postMusic()}
               color={theme.text}
               size={24}
               style={{
@@ -90,7 +107,7 @@ const Editor = () => {
               />
             </Link>
             <ThemeToggle />
-            <DropDownMenu style={{
+            <DropDownMenu options={options} style={{
               marginLeft: 8,
               marginRight: -8,
             }} />
@@ -111,20 +128,20 @@ const Editor = () => {
         </button>
 
         <ChordSheet
-          showKeyboard={viewController.showKeyboard}
-          editTitleFn={viewController.editTitle}
-          verses={viewController.verses}
-          chords={viewController.sheet}
+          showKeyboard={showKeyboard}
+          editTitleFn={editTitle}
+          verses={verses}
+          chords={sheet}
         />
 
         <ChordInput
-          show={viewController.showKeyboard}
-          setShow={viewController.setShowKeyboard}
-          addChord={viewController.addChord}
-          removeChord={viewController.removeChord}
-          newLine={viewController.newLine}
-          notes={viewController.notes}
-          intervals={viewController.intervals}
+          show={showKeyboard}
+          setShow={setShowKeyboard}
+          addChord={addChord}
+          removeChord={removeChord}
+          newLine={newLine}
+          notes={notes}
+          intervals={intervals}
         />
       </S.InputContainer>
     </S.Container>

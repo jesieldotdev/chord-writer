@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { enqueueSnackbar } from "notistack";
 import { fetchMusicsApi, postMusicApi } from "../../api/services";
 import Vibrate from "../../utils/vibrate";
+import { AiOutlineProfile, AiOutlineSetting } from "react-icons/ai";
 
 const EditorViewController = () => {
   const notes = ["C", "D", "E", "F", "G", "A", "B"] as string[];
@@ -121,6 +122,26 @@ function postMusicJson(postData: any) {
     });
   }
 
+  const options = [
+    {
+      render:
+
+        <a href="/messages" >
+          Importar JSON
+        </a>,
+      icon: <AiOutlineSetting size={24} />
+
+    },
+    {
+      render: <a href="/messages" >
+        Conta
+      </a>
+      ,
+      icon: <AiOutlineProfile size={24} />
+
+    },
+  ].map((item, index) => ({ id: index, ...item }))
+
   return {
     notes,
     intervals,
@@ -139,6 +160,7 @@ function postMusicJson(postData: any) {
     setEditMode,
     postMusic,
     postMusicJson,
+    options
   };
 };
 
