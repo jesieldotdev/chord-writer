@@ -20,11 +20,13 @@ interface DropDownProps {
     icon: JSX.Element;
     id: number;
   }[]
+  setIsActive: React.Dispatch<React.SetStateAction<boolean>>
+  isActive: boolean
 }
 
-export const DropDownMenu = ({ style, options }: DropDownProps) => {
+export const DropDownMenu = ({ style, options, setIsActive, isActive }: DropDownProps) => {
   const dropdownRef = React.useRef(null);
-  const [isActive, setIsActive] = React.useState(false);
+
   const onClick = () => setIsActive(!isActive);
   const { theme, isDark } = React.useContext(Context);
 
@@ -45,6 +47,8 @@ export const DropDownMenu = ({ style, options }: DropDownProps) => {
 
 
   console.log(options)
+
+
 
   return (
     <S.MenuContainer style={style} theme={theme}>
