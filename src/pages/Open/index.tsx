@@ -11,7 +11,7 @@ import DropDownMenu from "../../components/Dropdown";
 import { CiSquarePlus } from "react-icons/ci";
 
 export default function OpenView() {
-  const viewController = OpenViewController();
+  const {options, loading , data,deleteMusic, } = OpenViewController();
   const { theme } = React.useContext(Context);
   return (
     <S.Container>
@@ -41,10 +41,10 @@ export default function OpenView() {
             size={38}
           />
         </Link>
-        <DropDownMenu />
+        <DropDownMenu options={options} />
       </div>
 
-      {viewController.loading ? (
+      {loading ? (
         <div>
           {/* <Skeleton circle width={100} height={100} containerClassName="avatar-skeleton" /> */}
           <Skeleton
@@ -63,12 +63,14 @@ export default function OpenView() {
         </div>
       ) : null}
 
-      {viewController?.data && viewController?.data.length > 0 && viewController?.data?.length > 0 ? (
-        viewController?.data?.map((music) => {
+
+      {data.length > 0 && data?.length > 0 ? (
+        data?.map((music) => {
+
           return (
             <SwipeToDelete
               key={music._id}
-              functionDelete={viewController.deleteMusic}
+              functionDelete={deleteMusic}
               music={music}
             >
               <Link to={`/sheet/${music._id}`} key={music._id}>
@@ -88,13 +90,15 @@ export default function OpenView() {
             </SwipeToDelete>
           );
         })
-      ) : !viewController.loading ? (
+      ) : !loading ? (
         <S.EmptyComponent theme={theme}>
           Sem cifras por aqui, clique no icone de + para criar uma.
         </S.EmptyComponent>
       ) : null}
 
-      {viewController?.data?.length > 0 ? (
+
+      {data.length > 0 ? (
+
         <S.EmptyComponent theme={theme}>
           Clique no icone de + para escrever uma cifra.
         </S.EmptyComponent>

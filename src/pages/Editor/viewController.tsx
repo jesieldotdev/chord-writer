@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Music, NewTitle, SheetProps } from "../../types";
 import changePos from "../../utils/changePositionOfString";
 import { v4 as uuidv4 } from "uuid";
 import { enqueueSnackbar } from "notistack";
 import { fetchMusicsApi, postMusicApi } from "../../api/services";
 import Vibrate from "../../utils/vibrate";
+import { AiOutlineProfile, AiOutlineSetting } from "react-icons/ai";
+import { Context } from "../../global/Context";
 
 const EditorViewController = () => {
   const notes = ["C", "D", "E", "F", "G", "A", "B"] as string[];
@@ -17,6 +19,10 @@ const EditorViewController = () => {
   const [sheet, setSheet] = useState<SheetProps[]>([]);
   const [verses, setVerses] = useState<any>([]);
   const [showKeyboard, setShowKeyboard] = useState<boolean>(true);
+  const { theme } = useContext(Context);
+  const [jsonInput, setJsonInput] = useState("");
+  const [showJSONForm, setShowJSONForm] = useState<boolean>(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   function addChord(inp: string, type: "note" | "interval") {
     Vibrate();
@@ -74,21 +80,21 @@ const EditorViewController = () => {
     editarNomePorId(verse.id, verse.newName);
   }
 
-// EditorViewController.js
-function postMusicJson(postData: any) {
-  postData.id = uuidv4(); // Adiciona uma chave única
+  // EditorViewController.js
+  function postMusicJson(postData: any) {
+    postData.id = uuidv4(); // Adiciona uma chave única
 
-  // Validação do objeto antes de adicionar
-  if (!postData.name || !postData.sheets) {
-    enqueueSnackbar("O objeto precisa ter um nome e uma lista de sheets válidos.");
-    return;
+    // Validação do objeto antes de adicionar
+    if (!postData.name || !postData.sheets) {
+      enqueueSnackbar("O objeto precisa ter um nome e uma lista de sheets válidos.");
+      return;
+    }
+
+    // Atualiza o estado do editor com os dados do JSON
+    setTitle(postData.name);
+    setVerses(postData.sheets);
+    enqueueSnackbar("JSON adcionado com sucesso!", { variant: 'success' }); // Mensagem de sucesso
   }
-
-  // Atualiza o estado do editor com os dados do JSON
-  setTitle(postData.name);
-  setVerses(postData.sheets);
-  enqueueSnackbar("JSON adcionado com sucesso!", {variant: 'success'}); // Mensagem de sucesso
-}
 
 
 
@@ -121,6 +127,46 @@ function postMusicJson(postData: any) {
     });
   }
 
+  const options = [
+    {
+      render:
+
+        <button onClick={() => {
+          setShowDropdown(false)
+          setShowJSONForm(!showJSONForm)}}  >
+          Importar JSON
+        </button>,
+      icon: <AiOutlineSetting size={24} />
+
+    },
+    {
+      render: <a href="/messages" >
+        Conta
+      </a>
+      ,
+      icon: <AiOutlineProfile size={24} />
+
+    },
+  ].map((item, index) => ({ id: index, ...item }))
+
+
+
+  const handleJsonSave = () => {
+    try {
+      // Log para ver o que está sendo processado
+      console.log("JSON de entrada:", jsonInput);
+
+      const cleanedJsonInput = jsonInput.replace(/\s+/g, ' ').trim();
+      console.log("JSON limpo:", cleanedJsonInput); // Exibir o JSON limpo
+
+      const parsedData = JSON.parse(cleanedJsonInput);
+      postMusicJson(parsedData);
+    } catch (error) {
+      console.error("Erro ao parsear o JSON:", error);
+      enqueueSnackbar("Erro ao parsear o JSON. Verifique o formato.");
+    }
+  };
+
   return {
     notes,
     intervals,
@@ -139,6 +185,14 @@ function postMusicJson(postData: any) {
     setEditMode,
     postMusic,
     postMusicJson,
+    options,
+    jsonInput,
+    handleJsonSave,
+    showJSONForm,
+    theme,
+    setJsonInput,
+    showDropdown,
+    setShowDropdown
   };
 };
 

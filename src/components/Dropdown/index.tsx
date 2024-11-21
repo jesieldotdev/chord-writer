@@ -14,12 +14,21 @@ import { Link } from "react-router-dom";
 import ThemeToggle from "../ThemeToggle";
 
 interface DropDownProps {
-  style?: React.CSSProperties;
+
+  style?: React.CSSProperties
+  options: {
+    render: JSX.Element;
+    icon: JSX.Element;
+    id: number;
+  }[]
+  setIsActive: React.Dispatch<React.SetStateAction<boolean>>
+  isActive: boolean
 }
 
-export const DropDownMenu = ({ style }: DropDownProps) => {
+export const DropDownMenu = ({ style, options, setIsActive, isActive }: DropDownProps) => {
+
   const dropdownRef = React.useRef(null);
-  const [isActive, setIsActive] = React.useState(false);
+
   const onClick = () => setIsActive(!isActive);
   const { theme, isDark } = React.useContext(Context);
 
@@ -37,6 +46,12 @@ export const DropDownMenu = ({ style }: DropDownProps) => {
     };
   }, []);
 
+
+
+  console.log(options)
+
+
+
   return (
     <S.MenuContainer style={style} theme={theme}>
       <button onClick={() => onClick()} className="menu-trigger">
@@ -51,23 +66,22 @@ export const DropDownMenu = ({ style }: DropDownProps) => {
       >
         <div>
           {/* <li><CiFileOn size={24} /><Link to="/" >Nova cifra</Link></li> */}
-          <li>
-            <AiOutlineSetting size={24} />
-            <a href="/messages" />
-            Preferências
-          </li>
+
+          {
+            options.map(option => <li key={option.id}>{option.render}</li>)
+          }
+
           {/* <li>
             <a>
               <ThemeToggle showText />{" "}
             </a>
           </li> */}
-          <li>
 
-            <Link to="/login">
-              <AiOutlineProfile size={24} />
-              Conta
-            </Link>
-          </li>
+
+          <div>
+
+          </div>
+
         </div>
       </nav>
     </S.MenuContainer>
