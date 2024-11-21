@@ -63,8 +63,10 @@ export default function OpenView() {
         </div>
       ) : null}
 
+
       {data.length > 0 && data?.length > 0 ? (
         data?.map((music) => {
+
           return (
             <SwipeToDelete
               key={music._id}
@@ -79,8 +81,8 @@ export default function OpenView() {
                   <div className="content">
                     <label className="title">{music.name}</label>
                     <label className="subtitle">
-                      {music.sheets.length}{" "}
-                      {music.sheets.length > 1 ? "versos" : "verso"}
+                      {music?.sheets?.length}{" "}
+                      {music?.sheets?.length > 1 ? "versos" : "verso"}
                     </label>
                   </div>
                 </S.Item>
@@ -94,7 +96,9 @@ export default function OpenView() {
         </S.EmptyComponent>
       ) : null}
 
+
       {data.length > 0 ? (
+
         <S.EmptyComponent theme={theme}>
           Clique no icone de + para escrever uma cifra.
         </S.EmptyComponent>

@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import ThemeToggle from "../ThemeToggle";
 
 interface DropDownProps {
+
   style?: React.CSSProperties
   options: {
     render: JSX.Element;
@@ -25,6 +26,7 @@ interface DropDownProps {
 }
 
 export const DropDownMenu = ({ style, options, setIsActive, isActive }: DropDownProps) => {
+
   const dropdownRef = React.useRef(null);
 
   const onClick = () => setIsActive(!isActive);
@@ -75,9 +77,11 @@ export const DropDownMenu = ({ style, options, setIsActive, isActive }: DropDown
             </a>
           </li> */}
 
+
           <div>
 
           </div>
+
         </div>
       </nav>
     </S.MenuContainer>
