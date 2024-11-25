@@ -32,7 +32,7 @@ const SheetView = () => {
   React.useEffect(() => {
     document.title =
       viewController.data?.name !== undefined
-        ? viewController.data?.name
+        ? `${viewController.data?.name} - Chord Writer`
         : "Chord Writter";
   }, [viewController.data?.name]);
 

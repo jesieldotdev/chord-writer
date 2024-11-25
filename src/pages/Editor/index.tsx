@@ -82,6 +82,7 @@ const Editor = () => {
 
 
         <ChordSheet
+        
           showKeyboard={showKeyboard}
           editTitleFn={editTitle}
           verses={verses}
