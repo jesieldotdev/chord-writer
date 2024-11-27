@@ -48,7 +48,6 @@ export const DropDownMenu = ({ style, options, setIsActive, isActive }: DropDown
 
 
 
-  console.log(options)
 
 
 

@@ -24,7 +24,6 @@ export const BlockSheet = styled.div`
   color: ${(props) => props.theme.text};
   border-radius: 8px;
 
-  padding: 8px;
 
   height: max-content;
   font-weight: 700;
@@ -64,7 +63,6 @@ export const ChordItem = styled.div`
   background-color: ${(props) => props.theme.buttonBackground};
   color: ${(props) => props.theme.text};
   border-radius: 8px;
-
   padding: 8px;
 
   height: max-content;
@@ -98,6 +96,7 @@ export const VerseContainer = styled.div`
   height: 260px;
   overflow-y: scroll;
   margin-top: 8px;
+
   .verse-title {
     font-size: 16px;
     font-weight: 200;

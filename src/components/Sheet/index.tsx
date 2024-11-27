@@ -23,8 +23,9 @@ const ChordSheet = ({ chords, verses, editTitleFn, showKeyboard }: ChordInputPro
     setEditVerseTitle(verseId);
   }
 
+
   return (
-    <>
+    <div className="p-2 ">
       {verses && verses.length > 0 ? (
         <S.VerseContainer>
           {verses.map((verse) => {
@@ -65,7 +66,8 @@ const ChordSheet = ({ chords, verses, editTitleFn, showKeyboard }: ChordInputPro
                     </label>
                   )} */}
                   {verse.chords?.map((inp) => (
-                    <S.ChordItem  onClick={() => {
+                    <S.ChordItem  
+                    onClick={() => {
                       editMode ? setEditMode(false) : null;
                     }} theme={theme}>
                       {inp.note}
@@ -92,15 +94,16 @@ const ChordSheet = ({ chords, verses, editTitleFn, showKeyboard }: ChordInputPro
 
       { chords && chords.length > 0 ? (
         <S.SheetWrapper>
-          {chords?.map((inp) => (
-            <S.BlockSheet theme={theme} key={inp.note} className="sheetBlock">
-              {inp.note}
+          {chords?.map((chord) => (
+            <S.BlockSheet theme={theme} key={chord.note} className="sheetBlock px-4 py-2">
+              {chord.note}
               <label>
-                {inp.intervals.map((n, index) => {
+                {chord.intervals.map((n, index) => {
                   return (
                     <>
-                      {index !== 0 && inp.intervals.length > index ? "/" : null}
+                      {index !== 0 && chord.intervals.length > index ? "/" : null}
                       {n}
+                     
                     </>
                   );
                 })}
@@ -111,7 +114,7 @@ const ChordSheet = ({ chords, verses, editTitleFn, showKeyboard }: ChordInputPro
       ) : showKeyboard ?
         <S.Label>Digite um acorde</S.Label>
       : <S.Label>Toque na tela</S.Label>}
-    </>
+    </div>
   );
 };
 

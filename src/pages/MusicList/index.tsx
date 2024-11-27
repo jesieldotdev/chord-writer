@@ -10,7 +10,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import DropDownMenu from "../../components/Dropdown";
 import { CiSquarePlus } from "react-icons/ci";
 
-export default function OpenView() {
+export default function MusicList() {
   const {options, loading , data,deleteMusic, } = OpenViewController();
   const { theme } = React.useContext(Context);
   return (
@@ -32,7 +32,7 @@ export default function OpenView() {
           style={{
             marginLeft: 'auto'
           }}
-          to="/"
+          to="/editor"
         >
           <CiSquarePlus
             style={{
@@ -73,7 +73,7 @@ export default function OpenView() {
               functionDelete={deleteMusic}
               music={music}
             >
-              <Link to={`/sheet/${music._id}`} key={music._id}>
+              <Link to={`/${music._id}`} key={music._id}>
                 <S.Item theme={theme}>
                   <S.IconLeft>
                     <FileEarmarkMusicFill size={32} />

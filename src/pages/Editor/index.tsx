@@ -42,6 +42,8 @@ const Editor = () => {
   } = HomeViewController();
 
 
+  console.log( sheet)
+
   return (
     <S.Container
       onClick={() =>
@@ -82,6 +84,7 @@ const Editor = () => {
 
 
         <ChordSheet
+        
           showKeyboard={showKeyboard}
           editTitleFn={editTitle}
           verses={verses}

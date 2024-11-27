@@ -21,7 +21,6 @@ const SwipeToDelete = ({
   const { theme } = React.useContext(Context);
 
   function deleteItem() {
-    console.log(music);
     functionDelete(music._id);
     // data = data.filter(i => i.id !== item.id )
   }

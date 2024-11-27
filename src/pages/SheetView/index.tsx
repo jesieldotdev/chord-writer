@@ -1,21 +1,21 @@
-import ChordInput from "../../../../components/Input";
-import ChordSheet from "../../../../components/Sheet";
+import ChordInput from "../../components/Input";
+import ChordSheet from "../../components/Sheet";
 import * as S from "./styles";
 // import HomeViewController from "./viewController";
-import ThemeToggle from "../../../../components/ThemeToggle";
+import ThemeToggle from "../../components/ThemeToggle";
 import { MusicNote } from "styled-icons/material";
 import { useContext, useEffect, useState } from "react";
-import { Context } from "../../../../global/Context";
+import { Context } from "../../global/Context";
 import { KeyboardHide } from "@styled-icons/material-rounded";
 import { FolderOpen, Save } from "styled-icons/boxicons-solid";
 import { Link, useParams } from "react-router-dom";
-import HomeViewController from "../../../Editor/viewController";
+import HomeViewController from "../Editor/viewController";
 import SheetViewController from "./viewController";
-import { Music, VerseProps } from "../../../../types";
+import { Music, VerseProps } from "../../types";
 import React from "react";
-import EditTitle from "../../../../components/Sheet/Components/EditTitle";
+import EditTitle from "../../components/Sheet/Components/EditTitle";
 import { FileEmpty } from "styled-icons/icomoon";
-import { getMusicById } from "../../../../api/services";
+import { getMusicById } from "../../api/services";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CiFolderOn, CiMusicNote1 } from "react-icons/ci";
@@ -32,7 +32,7 @@ const SheetView = () => {
   React.useEffect(() => {
     document.title =
       viewController.data?.name !== undefined
-        ? viewController.data?.name
+        ? `${viewController.data?.name} - Chord Writer`
         : "Chord Writter";
   }, [viewController.data?.name]);
 
@@ -93,7 +93,7 @@ const SheetView = () => {
               marginRight: 8,
             }}
           /> */}
-        <Link to="/sheets">
+        <Link to="/">
           <CiFolderOn size={24} color={theme.text} style={{
             marginRight: 8,
             marginTop: 8
@@ -131,6 +131,7 @@ const SheetView = () => {
               >
                 {[...Array(7).keys()].map((i) => (
                   <Skeleton
+                    key={i}
                     baseColor={theme.keyboardBackGround}
                     borderRadius={8}
                     highlightColor={theme.backgroundFocus}
@@ -157,16 +158,16 @@ const SheetView = () => {
                         value={verse}
                       />
                     ) : ( */}
-                      <label
-                        key={verse._id}
-                        onClick={() => editVerse(verse.id)}
-                        className="verse-title"
-                      >
-                        {verse.name}
-                      </label>
+                    <label
+                      key={verse.id}
+                      onClick={() => editVerse(verse.id)}
+                      className="verse-title"
+                    >
+                      {verse.name}
+                    </label>
                     {/* )} */}
                     <S.Verse
-                      key={verse._id}
+                      key={verse.id}
                       theme={viewController.theme}
                       className="sheetBlock"
                     >
@@ -184,9 +185,9 @@ const SheetView = () => {
                       {verse.name}
                     </label>
                   )} */}
-                      {verse.chords?.map((inp) => (
+                      {verse.chords.map((item, index) => ({ id: index, ...item })).map((inp) => (
                         <S.ChordItem
-                          key={inp._id}
+                          key={inp.id}
                           onClick={() => {
                             editMode ? setEditMode(false) : null;
                           }}
@@ -196,12 +197,12 @@ const SheetView = () => {
                           <label>
                             {inp.intervals.map((n, index) => {
                               return (
-                                <>
+                                <React.Fragment key={n}>
                                   {index !== 0 && inp.intervals?.length > index
                                     ? "/"
                                     : null}
                                   {n}
-                                </>
+                                </React.Fragment>
                               );
                             })}
                           </label>
@@ -233,7 +234,7 @@ const SheetView = () => {
           ) : null}
         </>
 
-        
+
 
         {/* <ChordSheet
           editTitleFn={viewController.editTitle}
@@ -251,9 +252,9 @@ const SheetView = () => {
           intervals={viewController.intervals}
         /> */}
 
-        
+
       </S.InputContainer>
-      
+
     </S.Container>
   );
 };
