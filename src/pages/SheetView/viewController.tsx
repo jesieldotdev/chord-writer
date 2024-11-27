@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { Music, VerseProps } from "../../../../types";
-import { getMusicById } from "../../../../api/services";
-import { Context } from "../../../../global/Context";
+import { Music, VerseProps } from "../../types";
+import { getMusicById } from "../../api/services";
+import { Context } from "../../global/Context";
 import { useParams } from "react-router-dom";
 
 interface SheetViewControllerProps {

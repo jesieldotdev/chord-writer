@@ -1,21 +1,21 @@
-import ChordInput from "../../../../components/Input";
-import ChordSheet from "../../../../components/Sheet";
+import ChordInput from "../../components/Input";
+import ChordSheet from "../../components/Sheet";
 import * as S from "./styles";
 // import HomeViewController from "./viewController";
-import ThemeToggle from "../../../../components/ThemeToggle";
+import ThemeToggle from "../../components/ThemeToggle";
 import { MusicNote } from "styled-icons/material";
 import { useContext, useEffect, useState } from "react";
-import { Context } from "../../../../global/Context";
+import { Context } from "../../global/Context";
 import { KeyboardHide } from "@styled-icons/material-rounded";
 import { FolderOpen, Save } from "styled-icons/boxicons-solid";
 import { Link, useParams } from "react-router-dom";
-import HomeViewController from "../../../Editor/viewController";
+import HomeViewController from "../Editor/viewController";
 import SheetViewController from "./viewController";
-import { Music, VerseProps } from "../../../../types";
+import { Music, VerseProps } from "../../types";
 import React from "react";
-import EditTitle from "../../../../components/Sheet/Components/EditTitle";
+import EditTitle from "../../components/Sheet/Components/EditTitle";
 import { FileEmpty } from "styled-icons/icomoon";
-import { getMusicById } from "../../../../api/services";
+import { getMusicById } from "../../api/services";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CiFolderOn, CiMusicNote1 } from "react-icons/ci";
@@ -93,7 +93,7 @@ const SheetView = () => {
               marginRight: 8,
             }}
           /> */}
-        <Link to="/sheets">
+        <Link to="/">
           <CiFolderOn size={24} color={theme.text} style={{
             marginRight: 8,
             marginTop: 8

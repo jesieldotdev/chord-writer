@@ -70,7 +70,7 @@ export const HeaderContent = ({
                             marginRight: 8,
                         }}
                     />
-                    <Link to="/sheets">
+                    <Link to="/">
                         <CiFolderOn
                             color={theme.text}
                             size={24}
