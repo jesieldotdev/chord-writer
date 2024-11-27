@@ -58,9 +58,6 @@ export const Header = styled.div`
   }
 `;
 
-export const InputContainer = styled.div`
-  margin-top: auto;
-`;
 
 export const SheetWrapper = styled.div`
   overflow-y: scroll;
@@ -79,6 +76,11 @@ export const Label = styled.label`
   margin-top: -8px;
   margin-bottom: 8px;
 `;
+
+export const Content = styled.div`
+padding: 24px 20px;
+margin-top: auto;
+`
 
 export const BlockSheet = styled.div`
   background-color: ${(props) => props.theme.buttonBackground};
@@ -140,8 +142,6 @@ export const ChordItem = styled.div`
   /* margin-top: 8px; */
   /* margin-bottom: 100px; */
 
-  width: min-content; /* Ajuste conforme necessário */
-  height: min-content; /* Ajuste conforme necessário */
   margin-bottom: 20px;
   box-sizing: border-box;
   align-items: flex-start;
@@ -154,10 +154,9 @@ export const ChordItem = styled.div`
 `;
 
 export const VerseContainer = styled.div`
-  width: 90vw;
-  /* background-color: red; */
   overflow-y: scroll;
   margin-top: 8px;
+  
   .verse-title {
     font-size: 16px;
     font-weight: 200;
