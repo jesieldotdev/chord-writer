@@ -1,4 +1,3 @@
-export function stringArrayToObjArray(array: string[]): { id: number; value: string }[] {
-    return array.map((item, index) => ({ id: index, value: item }));
-  }
-  
+export function stringArrayToObjArray(array: string[]){
+    return array.map((item, index) => ({id: index, name: item}))
+}
