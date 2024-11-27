@@ -4,6 +4,7 @@ import { Theme } from "../../global/themes";
 export const Content = styled.div<Theme>`
   display: flex;
   flex-direction: row;
+  align-items:center;
 `;
 
 export const Input = styled.input<Theme>`
@@ -11,8 +12,8 @@ export const Input = styled.input<Theme>`
   color: ${(props) => props.theme.text};
   min-width: 67px;
   max-width: 200px;
-  padding: 8px;
-  height: 14px;
+  padding: 4px;
+  
   border-radius: 8px;
   outline: none;
   border: 0px solid blue;

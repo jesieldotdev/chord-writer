@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Music, NewTitle, SheetProps } from "../../types";
-import changePos from "../../utils/changePositionOfString";
 import { v4 as uuidv4 } from "uuid";
 import { enqueueSnackbar } from "notistack";
 import { fetchMusicsApi, postMusicApi } from "../../api/services";
@@ -15,6 +14,7 @@ const EditorViewController = () => {
     "m", "M", "#", "b", "sus4", "dim", "5+", "6", "5b", "7", "7M", "9", "9b", "11", "13",
   ])
 
+  const [count, setCount] = useState<number>(1)
   const [title, setTitle] = useState<string>("Untitled");
   const [editMode, setEditMode] = useState<boolean>(false);
   const [sheet, setSheet] = useState<SheetProps[]>([]);
@@ -29,23 +29,31 @@ const EditorViewController = () => {
     setSheet((prevSheet) => {
       if (name === "/" && prevSheet.length > 0) {
         const lastChord = prevSheet[prevSheet.length - 1];
-        
+  
         if (!lastChord.note.includes("/")) {
           const updatedChord = { ...lastChord, note: `${lastChord.note}/` };
           return [...prevSheet.slice(0, -1), updatedChord];
         } else {
-          return prevSheet; 
+          return prevSheet;
         }
       }
   
-      
       if (type === "note") {
-        if (prevSheet.length > 0 && prevSheet[prevSheet.length - 1].note.includes("/")) {
+        if (
+          prevSheet.length > 0 &&
+          prevSheet[prevSheet.length - 1].note.includes("/")
+        ) {
           const lastChord = prevSheet[prevSheet.length - 1];
-          const [firstNote, _] = lastChord.note.split("/");
-          const updatedLastChord = { 
-            ...lastChord, 
-            note: `${firstNote}/${name}` 
+          const [firstNote, bassNote] = lastChord.note.split("/");
+  
+          
+          if (bassNote) {
+            return [...prevSheet, { note: name, intervals: [] }];
+          }
+  
+          const updatedLastChord = {
+            ...lastChord,
+            note: `${firstNote}/${name}`,
           };
           return [...prevSheet.slice(0, -1), updatedLastChord];
         } else {
@@ -53,7 +61,6 @@ const EditorViewController = () => {
         }
       }
   
-      
       if (type === "interval" && prevSheet.length > 0) {
         const updatedSheet = [...prevSheet];
         const lastNote = updatedSheet[updatedSheet.length - 1];
@@ -65,13 +72,16 @@ const EditorViewController = () => {
     });
   };
   
+  
+  
   function removeChord() {
     setSheet((prev) => prev.slice(0, -1));
   }
 
   function newLine() {
     if (sheet.length > 0) {
-      const data = { id: uuidv4(), name: "verse", chords: [...sheet] };
+      setCount(prev => prev +1)
+      const data = { id: uuidv4(), name: `Parte ${count}`, chords: [...sheet] };
       setVerses((prev) => [...prev, data]);
       setSheet([]);
     }
