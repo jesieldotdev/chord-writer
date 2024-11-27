@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Music, NewTitle, SheetProps } from "../../types";
-import changePos from "../../utils/changePositionOfString";
 import { v4 as uuidv4 } from "uuid";
 import { enqueueSnackbar } from "notistack";
 import { fetchMusicsApi, postMusicApi } from "../../api/services";
@@ -15,6 +14,7 @@ const EditorViewController = () => {
     "m", "M", "#", "b", "sus4", "dim", "5+", "6", "5b", "7", "7M", "9", "9b", "11", "13",
   ])
 
+  const [count, setCount] = useState<number>(1)
   const [title, setTitle] = useState<string>("Untitled");
   const [editMode, setEditMode] = useState<boolean>(false);
   const [sheet, setSheet] = useState<SheetProps[]>([]);
@@ -80,7 +80,8 @@ const EditorViewController = () => {
 
   function newLine() {
     if (sheet.length > 0) {
-      const data = { id: uuidv4(), name: "verse", chords: [...sheet] };
+      setCount(prev => prev +1)
+      const data = { id: uuidv4(), name: `Parte ${count}`, chords: [...sheet] };
       setVerses((prev) => [...prev, data]);
       setSheet([]);
     }
