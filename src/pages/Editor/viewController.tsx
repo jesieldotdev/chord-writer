@@ -9,10 +9,10 @@ import { AiOutlineProfile, AiOutlineSetting } from "react-icons/ai";
 import { Context } from "../../global/Context";
 
 const EditorViewController = () => {
-  const notes = ["C", "D", "E", "F", "G", "A", "B"] as string[];
+  const notes = ["C", "D", "E", "F", "G", "A", "B"].map((item, index) => ({id: index, name: item})) 
   const intervals = [
     "m", "M", "#", "b", "sus4", "dim", "5+", "6", "5b", "7", "7M", "9", "9b", "11", "13",
-  ];
+  ].map((item, index) => ({id: index, name: item}))
 
   const [title, setTitle] = useState<string>("Untitled");
   const [editMode, setEditMode] = useState<boolean>(false);
@@ -23,38 +23,47 @@ const EditorViewController = () => {
   const [jsonInput, setJsonInput] = useState("");
   const [showJSONForm, setShowJSONForm] = useState<boolean>(false);
   const [showDropdown, setShowDropdown] = useState(false);
-
-  function addChord(inp: string, type: "note" | "interval") {
-    Vibrate();
-    if (type === "note") {
-      const data = { note: inp, intervals: [] };
-      setSheet((prev) => [...prev, data]);
-    } else {
-      const newArray = [...sheet];
-      const third = ["m", "M"];
-      const tensions = ["7", "9", "11", "13"];
-      const clefs = ["#", "b"];
-
-      if (third.includes(inp)) {
-        newArray[newArray.length - 1].note = `${newArray[newArray.length - 1].note}${inp}`;
-        setSheet(newArray);
-      } else if (tensions.includes(inp)) {
-        newArray[newArray.length - 1].intervals.push(inp);
-        setSheet(newArray);
-      } else if (clefs.includes(inp)) {
-        newArray[newArray.length - 1].note = `${newArray[newArray.length - 1].note}${inp}`;
-        const string = newArray[newArray.length - 1].note;
-        const x = newArray[newArray.length - 1].note.length - 1;
-        const y = 1;
-        newArray[newArray.length - 1].note = changePos(string, x, y);
-        setSheet(newArray);
-      } else {
-        newArray[newArray.length - 1].intervals.push(inp);
-        setSheet(newArray);
+  
+  const addChord = (name: string, type: "note" | "interval") => {
+    setSheet((prevSheet) => {
+      if (name === "/" && prevSheet.length > 0) {
+        const lastChord = prevSheet[prevSheet.length - 1];
+        
+        if (!lastChord.note.includes("/")) {
+          const updatedChord = { ...lastChord, note: `${lastChord.note}/` };
+          return [...prevSheet.slice(0, -1), updatedChord];
+        } else {
+          return prevSheet; 
+        }
       }
-    }
-  }
-
+  
+      
+      if (type === "note") {
+        if (prevSheet.length > 0 && prevSheet[prevSheet.length - 1].note.includes("/")) {
+          const lastChord = prevSheet[prevSheet.length - 1];
+          const [firstNote, _] = lastChord.note.split("/");
+          const updatedLastChord = { 
+            ...lastChord, 
+            note: `${firstNote}/${name}` 
+          };
+          return [...prevSheet.slice(0, -1), updatedLastChord];
+        } else {
+          return [...prevSheet, { note: name, intervals: [] }];
+        }
+      }
+  
+      
+      if (type === "interval" && prevSheet.length > 0) {
+        const updatedSheet = [...prevSheet];
+        const lastNote = updatedSheet[updatedSheet.length - 1];
+        lastNote.intervals.push(name);
+        return updatedSheet;
+      }
+  
+      return prevSheet;
+    });
+  };
+  
   function removeChord() {
     setSheet((prev) => prev.slice(0, -1));
   }
@@ -80,20 +89,20 @@ const EditorViewController = () => {
     editarNomePorId(verse.id, verse.newName);
   }
 
-  // EditorViewController.js
+  
   function postMusicJson(postData: any) {
-    postData.id = uuidv4(); // Adiciona uma chave única
+    postData.id = uuidv4(); 
 
-    // Validação do objeto antes de adicionar
+    
     if (!postData.name || !postData.sheets) {
       enqueueSnackbar("O objeto precisa ter um nome e uma lista de sheets válidos.");
       return;
     }
 
-    // Atualiza o estado do editor com os dados do JSON
+    
     setTitle(postData.name);
     setVerses(postData.sheets);
-    enqueueSnackbar("JSON adcionado com sucesso!", { variant: 'success' }); // Mensagem de sucesso
+    enqueueSnackbar("JSON adcionado com sucesso!", { variant: 'success' }); 
   }
 
 
@@ -153,11 +162,11 @@ const EditorViewController = () => {
 
   const handleJsonSave = () => {
     try {
-      // Log para ver o que está sendo processado
+      
       console.log("JSON de entrada:", jsonInput);
 
       const cleanedJsonInput = jsonInput.replace(/\s+/g, ' ').trim();
-      console.log("JSON limpo:", cleanedJsonInput); // Exibir o JSON limpo
+      console.log("JSON limpo:", cleanedJsonInput); 
 
       const parsedData = JSON.parse(cleanedJsonInput);
       postMusicJson(parsedData);

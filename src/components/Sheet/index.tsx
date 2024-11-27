@@ -23,7 +23,6 @@ const ChordSheet = ({ chords, verses, editTitleFn, showKeyboard }: ChordInputPro
     setEditVerseTitle(verseId);
   }
 
-  console.log(verses)
 
   return (
     <div className="p-2 ">
@@ -95,15 +94,16 @@ const ChordSheet = ({ chords, verses, editTitleFn, showKeyboard }: ChordInputPro
 
       { chords && chords.length > 0 ? (
         <S.SheetWrapper>
-          {chords?.map((inp) => (
-            <S.BlockSheet theme={theme} key={inp.note} className="sheetBlock px-4 py-2">
-              {inp.note}
+          {chords?.map((chord) => (
+            <S.BlockSheet theme={theme} key={chord.note} className="sheetBlock px-4 py-2">
+              {chord.note}
               <label>
-                {inp.intervals.map((n, index) => {
+                {chord.intervals.map((n, index) => {
                   return (
                     <>
-                      {index !== 0 && inp.intervals.length > index ? "/" : null}
+                      {index !== 0 && chord.intervals.length > index ? "/" : null}
                       {n}
+                     
                     </>
                   );
                 })}

@@ -42,6 +42,8 @@ const Editor = () => {
   } = HomeViewController();
 
 
+  console.log( sheet)
+
   return (
     <S.Container
       onClick={() =>

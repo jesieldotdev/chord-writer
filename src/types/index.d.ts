@@ -1,6 +1,7 @@
 export interface SheetProps {
   note: string;
   intervals: string[];
+  bass: string
   // id: string;
 }
 

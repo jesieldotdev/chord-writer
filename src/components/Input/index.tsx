@@ -24,21 +24,35 @@ const ChordInput = ({
         <S.IntervalInsert>
           {intervals.map((int) => (
             <S.ButtonSmall
+
               style={{
                 width: "max-content",
               }}
               theme={theme}
-              key={int}
-              onClick={() => addChord(int, "interval")}
+              key={int.id}
+              onClick={() => addChord(int.name, "interval")}
             >
-              {int}
+              {int.name}
             </S.ButtonSmall>
           ))}
+          <S.ButtonSmall
+
+            style={{
+              width: "max-content",
+            }}
+            theme={theme}
+    
+            onClick={() => addChord('/', "note")}
+          >
+            /
+
+          </S.ButtonSmall>
+
         </S.IntervalInsert>
         <S.SheetInsert>
           {notes.map((note) => (
-            <S.Button theme={theme} onClick={() => addChord(note, "note")}>
-              {note}
+            <S.Button key={note.id} theme={theme} onClick={() => addChord(note.name, "note")}>
+              {note.name}
             </S.Button>
           ))}
           <S.Button theme={theme}>
