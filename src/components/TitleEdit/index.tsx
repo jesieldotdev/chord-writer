@@ -37,8 +37,7 @@ const TitleEdit = ({ setShow, setTitle, title }: TitleProps) => {
         onChange={(e) => handleChange(e)}
       />
       <CheckCircleFill onClick={()=> confirmFunction()} style={{
-        marginLeft: 4,
-        marginRight: 16,
+        marginLeft: 16,
       }} color={theme.text} size={20} />
     </S.Content>
   );
