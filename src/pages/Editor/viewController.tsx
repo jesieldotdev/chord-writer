@@ -29,23 +29,31 @@ const EditorViewController = () => {
     setSheet((prevSheet) => {
       if (name === "/" && prevSheet.length > 0) {
         const lastChord = prevSheet[prevSheet.length - 1];
-        
+  
         if (!lastChord.note.includes("/")) {
           const updatedChord = { ...lastChord, note: `${lastChord.note}/` };
           return [...prevSheet.slice(0, -1), updatedChord];
         } else {
-          return prevSheet; 
+          return prevSheet;
         }
       }
   
-      
       if (type === "note") {
-        if (prevSheet.length > 0 && prevSheet[prevSheet.length - 1].note.includes("/")) {
+        if (
+          prevSheet.length > 0 &&
+          prevSheet[prevSheet.length - 1].note.includes("/")
+        ) {
           const lastChord = prevSheet[prevSheet.length - 1];
-          const [firstNote, _] = lastChord.note.split("/");
-          const updatedLastChord = { 
-            ...lastChord, 
-            note: `${firstNote}/${name}` 
+          const [firstNote, bassNote] = lastChord.note.split("/");
+  
+          
+          if (bassNote) {
+            return [...prevSheet, { note: name, intervals: [] }];
+          }
+  
+          const updatedLastChord = {
+            ...lastChord,
+            note: `${firstNote}/${name}`,
           };
           return [...prevSheet.slice(0, -1), updatedLastChord];
         } else {
@@ -53,7 +61,6 @@ const EditorViewController = () => {
         }
       }
   
-      
       if (type === "interval" && prevSheet.length > 0) {
         const updatedSheet = [...prevSheet];
         const lastNote = updatedSheet[updatedSheet.length - 1];
@@ -64,6 +71,8 @@ const EditorViewController = () => {
       return prevSheet;
     });
   };
+  
+  
   
   function removeChord() {
     setSheet((prev) => prev.slice(0, -1));
