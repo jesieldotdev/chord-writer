@@ -131,6 +131,7 @@ const SheetView = () => {
               >
                 {[...Array(7).keys()].map((i) => (
                   <Skeleton
+                    key={i}
                     baseColor={theme.keyboardBackGround}
                     borderRadius={8}
                     highlightColor={theme.backgroundFocus}
@@ -157,16 +158,16 @@ const SheetView = () => {
                         value={verse}
                       />
                     ) : ( */}
-                      <label
-                        key={verse._id}
-                        onClick={() => editVerse(verse.id)}
-                        className="verse-title"
-                      >
-                        {verse.name}
-                      </label>
+                    <label
+                      key={verse.id}
+                      onClick={() => editVerse(verse.id)}
+                      className="verse-title"
+                    >
+                      {verse.name}
+                    </label>
                     {/* )} */}
                     <S.Verse
-                      key={verse._id}
+                      key={verse.id}
                       theme={viewController.theme}
                       className="sheetBlock"
                     >
@@ -184,9 +185,9 @@ const SheetView = () => {
                       {verse.name}
                     </label>
                   )} */}
-                      {verse.chords?.map((inp) => (
+                      {verse.chords.map((item, index) => ({ id: index, ...item })).map((inp) => (
                         <S.ChordItem
-                          key={inp._id}
+                          key={inp.id}
                           onClick={() => {
                             editMode ? setEditMode(false) : null;
                           }}
@@ -196,12 +197,12 @@ const SheetView = () => {
                           <label>
                             {inp.intervals.map((n, index) => {
                               return (
-                                <>
+                                <React.Fragment key={n}>
                                   {index !== 0 && inp.intervals?.length > index
                                     ? "/"
                                     : null}
                                   {n}
-                                </>
+                                </React.Fragment>
                               );
                             })}
                           </label>
@@ -233,7 +234,7 @@ const SheetView = () => {
           ) : null}
         </>
 
-        
+
 
         {/* <ChordSheet
           editTitleFn={viewController.editTitle}
@@ -251,9 +252,9 @@ const SheetView = () => {
           intervals={viewController.intervals}
         /> */}
 
-        
+
       </S.InputContainer>
-      
+
     </S.Container>
   );
 };

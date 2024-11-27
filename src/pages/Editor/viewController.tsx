@@ -7,12 +7,13 @@ import { fetchMusicsApi, postMusicApi } from "../../api/services";
 import Vibrate from "../../utils/vibrate";
 import { AiOutlineProfile, AiOutlineSetting } from "react-icons/ai";
 import { Context } from "../../global/Context";
+import { stringArrayToObjArray } from "../../utils/arrayWithId";
 
 const EditorViewController = () => {
-  const notes = ["C", "D", "E", "F", "G", "A", "B"].map((item, index) => ({id: index, name: item})) 
-  const intervals = [
+  const notes = stringArrayToObjArray(["C", "D", "E", "F", "G", "A", "B"])
+  const intervals = stringArrayToObjArray([
     "m", "M", "#", "b", "sus4", "dim", "5+", "6", "5b", "7", "7M", "9", "9b", "11", "13",
-  ].map((item, index) => ({id: index, name: item}))
+  ])
 
   const [title, setTitle] = useState<string>("Untitled");
   const [editMode, setEditMode] = useState<boolean>(false);
