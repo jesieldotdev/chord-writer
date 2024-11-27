@@ -7,12 +7,7 @@ import { Context } from "./global/Context";
 function App() {
   const {theme} = useContext(Context);
 
-  React.useEffect(() => {
-    document.title = "Chord Writter";
-    return () => {
-      document.title = "Página não encontrada";
-    };
-  }, []);
+
   return (
     <>
       <GlobalStyles Theme={theme} />
