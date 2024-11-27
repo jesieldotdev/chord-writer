@@ -56,7 +56,9 @@ const SheetView = () => {
           marginRight: 16,
         }}
       >
-        <S.Title theme={viewController.theme}>
+        <S.Title
+        
+        theme={viewController.theme}>
           <Link
             style={{
               color: viewController.theme.text,
@@ -117,7 +119,7 @@ const SheetView = () => {
         <ThemeToggle />
       </S.Header>
 
-      <S.InputContainer theme={viewController.theme}>
+      <S.Content theme={viewController.theme}>
         <>
           {viewController.loading ? (
             <S.VerseContainer>
@@ -253,7 +255,7 @@ const SheetView = () => {
         /> */}
 
 
-      </S.InputContainer>
+      </S.Content>
 
     </S.Container>
   );
