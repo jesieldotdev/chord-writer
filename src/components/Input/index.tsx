@@ -92,9 +92,10 @@ const ChordInput = ({
           <div className="flex justify-between w-full">
             <S.Button
               className={keyboard_command_style}
+              onClick={() => setShow(!show)}
+
               theme={theme}>
               <KeyboardHide
-                onClick={() => setShow(!show)}
                 // color={theme.text}
                 color={theme.text}
                 size={24}

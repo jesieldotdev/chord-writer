@@ -10,6 +10,11 @@ export const SheetWrapper = styled.div`
   margin-top: 8px;
 `;
 
+export const Container = styled.div`
+
+
+`
+
 export const Label = styled.label`
   text-align: center;
   /* width: 120px; */
@@ -92,10 +97,9 @@ export const ChordItem = styled.div`
 
 export const VerseContainer = styled.div`
   width: 100%;
-  /* background-color: red; */
-  height: 260px;
-  overflow-y: scroll;
-  margin-top: 8px;
+
+
+  margin-top: 64px;
 
   .verse-title {
     font-size: 16px;
