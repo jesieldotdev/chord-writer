@@ -1,4 +1,5 @@
 import { SetStateAction } from "react";
+import { SheetProps } from "../../types";
 
 export interface ChordInputProps {
   notes: {id: number, name: string}[];
@@ -8,5 +9,8 @@ export interface ChordInputProps {
   show: boolean;
   setShow: React.Dispatch<SetStateAction<boolean>>;
   newLine: () => any;
-  
+  chords: SheetProps[];
+  // intervals: string
+  showKeyboard: boolean
+  className?: string
 }

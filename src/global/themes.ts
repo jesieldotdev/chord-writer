@@ -6,6 +6,7 @@ export interface Theme {
   boxShadowColor: string;
   keyboardBackGround: string;
   backgroundFocus: string
+  bgSecondary: string
 }
 
 export const lightTheme: Theme = {
@@ -14,7 +15,8 @@ export const lightTheme: Theme = {
   buttonBackground: "#f9f9f9",
   boxShadowColor: "#bebebe",
   keyboardBackGround: "#eeeeee",
-  backgroundFocus: '#eee'
+  backgroundFocus: '#eee',
+  bgSecondary: "#fefefe"
   // adicione outras propriedades conforme necessário
 };
 
@@ -24,6 +26,7 @@ export const darkTheme: Theme = {
   buttonBackground: "#282828",
   boxShadowColor: "rgba(0, 0, 0, 0.8)",
   keyboardBackGround: "#222",
-  backgroundFocus: '#363636'
+  backgroundFocus: '#363636',
+  bgSecondary: "#323232"
   // adicione outras propriedades conforme necessário
 };

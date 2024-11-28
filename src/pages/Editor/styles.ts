@@ -15,8 +15,8 @@ export const Container = styled.div`
   margin-top: auto;
 
   /* height: 100%; */
-  height: calc(100vh - 120px);
-
+  /* height: calc(100vh - 120px); */
+height: 100vh;
   ::-webkit-scrollbar {
     display: none;
   }
@@ -77,5 +77,5 @@ export const Header = styled.div`
 `;
 
 export const InputContainer = styled.div`
-  margin-top: auto;
+  /* margin-top: auto; */
 `;

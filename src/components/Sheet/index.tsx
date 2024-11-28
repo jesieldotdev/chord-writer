@@ -11,9 +11,10 @@ interface ChordInputProps {
   verses: VerseProps[];
   editTitleFn: (verse: NewTitle) => any;
   showKeyboard: boolean
+  className?: string
 }
 
-const ChordSheet = ({ chords, verses, editTitleFn, showKeyboard }: ChordInputProps) => {
+const ChordSheet = ({ chords, verses, editTitleFn, showKeyboard, className }: ChordInputProps) => {
   const { theme } = useContext(Context);
   const [editVerseTitle, setEditVerseTitle] = React.useState<string>();
   const [editMode, setEditMode] = React.useState<boolean>(false);
@@ -25,7 +26,7 @@ const ChordSheet = ({ chords, verses, editTitleFn, showKeyboard }: ChordInputPro
 
 
   return (
-    <div className="p-2 ">
+    <div className={`p-2 ${className}`}>
       {verses && verses.length > 0 ? (
         <S.VerseContainer>
           {verses.map((verse) => {
@@ -92,7 +93,7 @@ const ChordSheet = ({ chords, verses, editTitleFn, showKeyboard }: ChordInputPro
         </S.VerseContainer>
       ) : null}
 
-      { chords && chords.length > 0 ? (
+      {/* { chords && chords.length > 0 ? (
         <S.SheetWrapper>
           {chords?.map((chord) => (
             <S.BlockSheet theme={theme} key={chord.note} className="sheetBlock px-4 py-2">
@@ -113,7 +114,7 @@ const ChordSheet = ({ chords, verses, editTitleFn, showKeyboard }: ChordInputPro
         </S.SheetWrapper>
       ) : showKeyboard ?
         <S.Label>Digite um acorde</S.Label>
-      : <S.Label>Toque na tela</S.Label>}
+      : <S.Label>Toque na tela</S.Label>} */}
     </div>
   );
 };
