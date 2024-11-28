@@ -84,7 +84,6 @@ const Editor = () => {
 
 
         <ChordSheet
-        
           showKeyboard={showKeyboard}
           editTitleFn={editTitle}
           verses={verses}
@@ -99,6 +98,9 @@ const Editor = () => {
           newLine={newLine}
           notes={notes}
           intervals={intervals}
+          chords={sheet}
+          showKeyboard={showKeyboard}
+
         />
       </S.InputContainer>
     </S.Container>

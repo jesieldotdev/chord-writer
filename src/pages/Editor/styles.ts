@@ -15,8 +15,8 @@ export const Container = styled.div`
   margin-top: auto;
 
   /* height: 100%; */
-  height: calc(100vh - 120px);
-
+  /* height: calc(100vh - 120px); */
+height: 100vh;
   ::-webkit-scrollbar {
     display: none;
   }
@@ -58,8 +58,6 @@ font-weight: 500;
 export const Header = styled.div`
   display: flex;
   margin-bottom: auto;
-  position: fixed;
-  top: 0px;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -69,6 +67,12 @@ export const Header = styled.div`
   background-color: ${(props) => props.theme.body};
   box-shadow: 0px 10px 70px -10px ${(props) => props.theme.boxShadowColor};
 
+  position: fixed;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
   .note-icon {
     /* display: flex; */
     /* align-items: center; */
@@ -77,5 +81,5 @@ export const Header = styled.div`
 `;
 
 export const InputContainer = styled.div`
-  margin-top: auto;
+  /* margin-top: auto; */
 `;

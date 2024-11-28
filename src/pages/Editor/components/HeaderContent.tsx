@@ -63,7 +63,7 @@ export const HeaderContent = ({
             {!editMode ? (
                 <>
                     <CiFloppyDisk
-                        onClick={() => postMusic()}
+                        onClick={()  => postMusic()}
                         color={theme.text}
                         size={24}
                         style={{

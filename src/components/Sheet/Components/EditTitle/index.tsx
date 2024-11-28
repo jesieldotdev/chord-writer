@@ -21,7 +21,7 @@ const EditTitle = ({ value, setShow, editTitleFn }: EditTitleProps) => {
     }
   };
 
-  function confirmFunction(){
+  function confirmFunction() {
     editTitleFn({ id: value.id, newName: title });
     setShow(false);
   }
@@ -31,18 +31,21 @@ const EditTitle = ({ value, setShow, editTitleFn }: EditTitleProps) => {
   };
 
   return (
-    <>
+    <div className="flex items-center justify-start">
       <S.Input
+        className="flex p-8 w-min"
         theme={theme}
         value={title}
         onKeyPress={handleClickEnter}
         onChange={(e) => handleChange(e)}
       />
-      <CheckCircleFill onClick={()=> confirmFunction()} style={{
-        marginLeft: 4,
-        marginRight: 16,
-      }} color={theme.text} size={20} />
-    </>
+      <S.Button>
+        <CheckCircleFill onClick={() => confirmFunction()} color={theme.text} size={28}  />
+
+      </S.Button>
+      
+
+    </div>
   );
 };
 
