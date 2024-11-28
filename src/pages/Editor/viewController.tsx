@@ -24,12 +24,12 @@ const EditorViewController = () => {
   const [jsonInput, setJsonInput] = useState("");
   const [showJSONForm, setShowJSONForm] = useState<boolean>(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  
+
   const addChord = (name: string, type: "note" | "interval") => {
     setSheet((prevSheet) => {
       if (name === "/" && prevSheet.length > 0) {
         const lastChord = prevSheet[prevSheet.length - 1];
-  
+
         if (!lastChord.note.includes("/")) {
           const updatedChord = { ...lastChord, note: `${lastChord.note}/` };
           return [...prevSheet.slice(0, -1), updatedChord];
@@ -37,7 +37,7 @@ const EditorViewController = () => {
           return prevSheet;
         }
       }
-  
+
       if (type === "note") {
         if (
           prevSheet.length > 0 &&
@@ -45,12 +45,12 @@ const EditorViewController = () => {
         ) {
           const lastChord = prevSheet[prevSheet.length - 1];
           const [firstNote, bassNote] = lastChord.note.split("/");
-  
-          
+
+
           if (bassNote) {
             return [...prevSheet, { note: name, intervals: [] }];
           }
-  
+
           const updatedLastChord = {
             ...lastChord,
             note: `${firstNote}/${name}`,
@@ -60,28 +60,28 @@ const EditorViewController = () => {
           return [...prevSheet, { note: name, intervals: [] }];
         }
       }
-  
+
       if (type === "interval" && prevSheet.length > 0) {
         const updatedSheet = [...prevSheet];
         const lastNote = updatedSheet[updatedSheet.length - 1];
         lastNote.intervals.push(name);
         return updatedSheet;
       }
-  
+
       return prevSheet;
     });
   };
-  
-  
-  
+
+
+
   function removeChord() {
     setSheet((prev) => prev.slice(0, -1));
   }
 
   function newLine() {
-    if (sheet.length > 0) {
-      setCount(prev => prev +1)
-      const data = { id: uuidv4(), name: `Parte ${count}`, chords: [...sheet] };
+    if (sheet.length !== 0) {
+      setCount(prev => prev + 1)
+      const data = { id: uuidv4(), name: `Parte ${count}`, chords: sheet };
       setVerses((prev) => [...prev, data]);
       setSheet([]);
     }
@@ -100,31 +100,39 @@ const EditorViewController = () => {
     editarNomePorId(verse.id, verse.newName);
   }
 
-  
-  function postMusicJson(postData: any) {
-    postData.id = uuidv4(); 
 
-    
+  function postMusicJson(postData: any) {
+    if (sheet.length) newLine()
+    postData.id = uuidv4();
+
+
+
     if (!postData.name || !postData.sheets) {
       enqueueSnackbar("O objeto precisa ter um nome e uma lista de sheets válidos.");
       return;
     }
 
-    
+
     setTitle(postData.name);
     setVerses(postData.sheets);
-    enqueueSnackbar("JSON adcionado com sucesso!", { variant: 'success' }); 
+    enqueueSnackbar("JSON adcionado com sucesso!", { variant: 'success' });
   }
 
 
 
-  function postMusic() {
+  async function postMusic() {
+    console.log(verses)
+    if (!!sheet) newLine()
+    
     const postData = {
+      id: uuidv4(),
       name: title,
-      sheets: verses,
+      sheets: [...verses],
     };
 
-    return fetchMusicsApi().then((res: Music[]) => {
+    console.log(postData)
+
+    return await fetchMusicsApi().then((res: Music[]) => {
       let counter = 1;
       let newTitle = title;
 
@@ -153,7 +161,8 @@ const EditorViewController = () => {
 
         <button onClick={() => {
           setShowDropdown(false)
-          setShowJSONForm(!showJSONForm)}}  >
+          setShowJSONForm(!showJSONForm)
+        }}  >
           Importar JSON
         </button>,
       icon: <AiOutlineSetting size={24} />
@@ -169,15 +178,15 @@ const EditorViewController = () => {
     },
   ].map((item, index) => ({ id: index, ...item }))
 
-
+console.log('verses', verses)
 
   const handleJsonSave = () => {
     try {
-      
+
       console.log("JSON de entrada:", jsonInput);
 
       const cleanedJsonInput = jsonInput.replace(/\s+/g, ' ').trim();
-      console.log("JSON limpo:", cleanedJsonInput); 
+      console.log("JSON limpo:", cleanedJsonInput);
 
       const parsedData = JSON.parse(cleanedJsonInput);
       postMusicJson(parsedData);
